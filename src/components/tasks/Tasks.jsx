@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell, faMoon } from "@fortawesome/free-solid-svg-icons";
+
 const Tasks = () => {
   return (
     <div className="admin-container">
@@ -8,7 +11,10 @@ const Tasks = () => {
         </ul>
       </div>
       <div className="right-side-container">
-        <div className="top-bar"></div>
+        <div className="top-bar">
+          <FontAwesomeIcon icon={faBell} />
+          <FontAwesomeIcon icon={faMoon} />
+        </div>
         <div className="admin-box">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Exercitationem, officiis. Numquam non quam id ullam ratione amet est
