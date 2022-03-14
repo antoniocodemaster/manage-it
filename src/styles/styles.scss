@@ -11,9 +11,13 @@ body {
 // Components
 @import "components/admin-box";
 @import "components/tasks-list";
+@import "components/signin-box";
+@import "components/inputs";
+@import "components/buttons";
 
 // Layouts
 @import "layout/admin";
+@import "layout/sign-in";
 
 // Pages
 @import "pages/signIn";

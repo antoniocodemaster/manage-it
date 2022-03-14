@@ -14,13 +14,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <NavLink activeclassname="active" to="/sign-in">
+        <NavLink activeclassname="active" to="/sign-in">
           Sign In
         </NavLink>
         <br />
         <NavLink activeclassname="active" to="/tasks">
           Tasks
-        </NavLink> */}
+        </NavLink>
         <Routes>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/tasks" element={<Tasks />} />

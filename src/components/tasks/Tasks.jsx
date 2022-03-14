@@ -62,7 +62,7 @@ const Tasks = () => {
             <input type="text" id="new-task" />
           </div>
           <div>
-            <button onClick={addNewTask}>Add New Task</button>
+            <button className="btn btn-primary" onClick={addNewTask}>Add New Task</button>
           </div>
         </div>
         <div className="admin-box">
