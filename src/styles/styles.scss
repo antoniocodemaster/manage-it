@@ -1,7 +1,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 // Utilities
@@ -10,6 +10,7 @@ body {
 
 // Components
 @import "components/admin-box";
+@import "components/tasks-list";
 
 // Layouts
 @import "layout/admin";
