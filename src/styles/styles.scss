@@ -1,0 +1,23 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+// Utilities
+@import "utilities/variables";
+@import "utilities/mixins";
+
+// Components
+@import "components/admin-box";
+
+// Layouts
+@import "layout/admin";
+
+// Pages
+@import "pages/signIn";
+@import "pages/tasks";
+
+// Themes
+@import "themes/light";
+@import "themes/dark";
