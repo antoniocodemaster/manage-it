@@ -1,14 +1,6 @@
 import React, { useState } from "react";
-import profilePicture from "../../images/antonio-profile-image.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBell,
-  faMoon,
-  faPen,
-  faCloud,
-  faPowerOff,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import LeftSideNav from "../LeftSideNav";
+import TopBar from "../TopBar";
 
 const Tasks = () => {
   // state
@@ -34,28 +26,9 @@ const Tasks = () => {
 
   return (
     <div className="admin-container">
-      <div className="left-side-nav">
-        <ul>
-          <li>
-            <FontAwesomeIcon icon={faPen} />
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faCloud} />
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faHeart} />
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faPowerOff} />
-          </li>
-        </ul>
-      </div>
+      <LeftSideNav />
       <div className="right-side">
-        <div className="top-bar">
-          <FontAwesomeIcon icon={faBell} />
-          <FontAwesomeIcon icon={faMoon} />
-          <img className="profile-picture" src={profilePicture} alt="" />
-        </div>
+        <TopBar />
         <div className="widgets-container">
           <div className="admin-box tasks-list">
             <ul>

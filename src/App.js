@@ -1,10 +1,11 @@
-import SignIn from "./components/sing-in/SignIng";
-import Tasks from "./components/tasks/Tasks";
-
+import SignIn from "./components/registration/SignIng";
+import SignUp from "./components/registration/SignUp";
+import PasswordReset from "./components/registration/PasswordReset";
+import Tasks from "./components/admin/tasks/Tasks";
+import Weather from "./components/admin/weather/Weather";
 import {
   BrowserRouter as Router,
   Route,
-  NavLink,
   Routes,
   BrowserRouter,
 } from "react-router-dom";
@@ -14,16 +15,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <NavLink activeclassname="active" to="/sign-in">
-          Sign In
-        </NavLink>
-        <br />
-        <NavLink activeclassname="active" to="/tasks">
-          Tasks
-        </NavLink> */}
         <Routes>
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
+          <Route path="/admin/tasks" element={<Tasks />} />
+          <Route path="/admin/weather" element={<Weather />} />
         </Routes>
       </BrowserRouter>
     </div>
