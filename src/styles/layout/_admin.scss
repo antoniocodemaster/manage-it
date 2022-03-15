@@ -1,17 +1,48 @@
 .admin-container {
   display: flex;
-  min-height: 100vh;
+  min-height: 88vh;
   .left-side-nav {
-    width: 150px;
+    width: 50px;
+    ul {
+      margin: 0;
+      padding: 0;
+      margin-top: 40px;
+      list-style: none;
+      text-align: center;
+      li {
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+    }
   }
-  .right-side-container {
-    width: calc(100% - 150px);
-    background: $backgroundColor;
-    padding: 20px;
+  .right-side {
+    width: calc(100% - 50px);
     .top-bar {
-      background: #4e2323;
+      background: #fff;
       height: 40px;
-      margin-bottom: 20px;
+      padding-right: 20px;
+      display: flex;
+      justify-content: right;
+      .profile-picture {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      svg,
+      img {
+        display: inline-block;
+        margin-left: 10px;
+        width: 20px;
+        height: 20px;
+        margin-top: auto;
+        margin-bottom: auto;
+        cursor: pointer;
+      }
+    }
+    .widgets-container {
+      background: $backgroundColor;
+      padding: 20px;
+      min-height: 100%;
     }
   }
 }
