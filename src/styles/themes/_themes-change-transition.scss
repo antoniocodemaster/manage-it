@@ -1,0 +1,22 @@
+.admin-container {
+  .left-side-nav {
+    transition: $themeChangeTransition;
+    svg.svg-inline--fa {
+      transition: $themeChangeTransition;
+    }
+  }
+  .right-side {
+    .top-bar {
+      transition: $themeChangeTransition;
+      svg.svg-inline--fa {
+        transition: $themeChangeTransition;
+      }
+    }
+    .widgets-container {
+      transition: $themeChangeTransition;
+      .admin-box {
+        transition: $themeChangeTransition;
+      }
+    }
+  }
+}
