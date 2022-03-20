@@ -1,3 +1,25 @@
-.light-theme.page-profile {
-  //   light theme styles go here
+.light-theme.admin-container {
+  .left-side-nav {
+    background: $lightThemeElementsColor;
+    svg.svg-inline--fa {
+      color: $primaryColor;
+    }
+  }
+  .right-side {
+    .top-bar {
+      background: $lightThemeElementsColor;
+      svg.svg-inline--fa {
+        color: $primaryColor;
+      }
+    }
+    .widgets-container {
+      background: $ligthBgClolor;
+      .admin-box {
+        background: #fff;
+        -webkit-box-shadow: 0 0 20px rgb(89 102 122 / 5%);
+        box-shadow: 0 0 20px rgb(89 102 122 / 5%);
+        border: 0 solid #e5e5e5;
+      }
+    }
+  }
 }
