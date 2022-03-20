@@ -1,10 +1,16 @@
 .dark-theme.admin-container {
   .left-side-nav {
     background: $darkThemeElementsColor;
+    svg.svg-inline--fa {
+      color: $primaryColor;
+    }
   }
   .right-side {
     .top-bar {
       background: $darkThemeElementsColor;
+      svg.svg-inline--fa {
+        color: $primaryColor;
+      }
     }
     .widgets-container {
       background: $darkBgColor;

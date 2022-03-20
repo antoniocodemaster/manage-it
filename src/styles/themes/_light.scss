@@ -1,10 +1,16 @@
 .light-theme.admin-container {
   .left-side-nav {
     background: $lightThemeElementsColor;
+    svg.svg-inline--fa {
+      color: $primaryColor;
+    }
   }
   .right-side {
     .top-bar {
       background: $lightThemeElementsColor;
+      svg.svg-inline--fa {
+        color: $primaryColor;
+      }
     }
     .widgets-container {
       background: $ligthBgClolor;
