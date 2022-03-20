@@ -1,3 +1,22 @@
-.dark-theme {
-  //  dark theme styles go here
+.dark-theme.admin-container {
+  .left-side-nav {
+    background: $darkThemeElementsColor;
+  }
+  .right-side {
+    .top-bar {
+      background: $darkThemeElementsColor;
+    }
+    .widgets-container {
+      background: $darkBgColor;
+      .admin-box {
+        background: $darkThemeElementsColor;
+        -webkit-box-shadow: 0 0 20px rgb(89 102 122 / 5%);
+        box-shadow: 0 0 20px rgb(89 102 122 / 5%);
+        border: 0 solid #e5e5e5;
+        * {
+          color: #fff;
+        }
+      }
+    }
+  }
 }
