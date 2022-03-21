@@ -12,6 +12,15 @@
       li {
         cursor: pointer;
         margin-bottom: 20px;
+        a {
+          padding: 5px 5px;
+          display: inline-block;
+          box-sizing: border-box;
+          svg {
+            width: auto;
+            height: 20px;
+          }
+        }
       }
     }
   }
@@ -36,6 +45,7 @@
         margin-top: auto;
         margin-bottom: auto;
         cursor: pointer;
+        padding: 3px;
       }
     }
     .widgets-container {
