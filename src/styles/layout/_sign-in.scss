@@ -3,4 +3,14 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  .links {
+    margin-top: 20px;
+    display: flex;
+    a {
+      display: inline-block;
+      margin-right: 25px;
+      text-decoration: none;
+      color: $primaryColor;
+    }
+  }
 }

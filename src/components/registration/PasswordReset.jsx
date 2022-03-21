@@ -1,11 +1,21 @@
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
+
 const PasswordReset = () => {
   return (
     <div className="signin-container">
-      <form className="signin-box">
+      <div className="signin-box">
         <label htmlFor="user-name">User Name</label>
         <input id="user-name" type="text" />
         <button className="btn btn-primary">Reset Password</button>
-      </form>
+        <div className="links">
+          <NavLink activeclassname="active" to="/">
+            Sing up
+          </NavLink>
+          <NavLink activeclassname="active" to="/sign-up">
+            Don't have an account?
+          </NavLink>
+        </div>
+      </div>
     </div>
   );
 };

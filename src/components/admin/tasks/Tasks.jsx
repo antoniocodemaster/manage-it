@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import swal from "sweetalert";
 import LeftSideNav from "../LeftSideNav";
 import TopBar from "../TopBar";
 
-const Tasks = () => {
+const Tasks = ({activeTheme}) => {
   // state
-  const [activeTheme, setActiveTheme] = useState("light-theme");
   const [tasks, setTasks] = useState([
     {
       name: "Bar",
@@ -27,11 +27,11 @@ const Tasks = () => {
 
   // functions
   const changeActiveTheme = () => {
-    if (activeTheme === "light-theme") {
-      setActiveTheme("dark-theme");
-    } else {
-      setActiveTheme("light-theme");
-    }
+    // if (activeTheme === "light-theme") {
+    //   setActiveTheme("dark-theme");
+    // } else {
+    //   setActiveTheme("light-theme");
+    // }
   };
 
   const swtichTaskStatus = (index) => {
@@ -147,4 +147,10 @@ const Tasks = () => {
   );
 };
 
-export default Tasks;
+const mapStateToProps = (state) => {
+  return {
+    activeTheme: state.activeTheme,
+  };
+};
+
+export default connect(mapStateToProps)(Tasks);

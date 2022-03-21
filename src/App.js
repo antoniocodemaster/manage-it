@@ -9,20 +9,26 @@ import {
   Routes,
   BrowserRouter,
 } from "react-router-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./reducers/adminPanelReducers";
 import "./styles/styles.scss";
 
 function App() {
+  const store = createStore(reducer);
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/password-reset" element={<PasswordReset />} />
-          <Route path="/admin/tasks" element={<Tasks />} />
-          <Route path="/admin/weather" element={<Weather />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/password-reset" element={<PasswordReset />} />
+            <Route path="/admin/tasks" element={<Tasks />} />
+            <Route path="/admin/weather" element={<Weather />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }
