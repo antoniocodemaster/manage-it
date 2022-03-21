@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import swal from "sweetalert";
 import LeftSideNav from "../LeftSideNav";
 import TopBar from "../TopBar";
 
@@ -22,15 +23,38 @@ const Tasks = () => {
       setTasks([...tasks, newTask.value]);
       newTask.value = "";
     } else {
-      alert(`New task can't be empty`);
+      swal({
+        title: "New task can't be empty",
+        text: "Please add some text to create a task",
+        icon: "error",
+        button: "Ok",
+        timer: "4000",
+      }).then(() => {
+        document.getElementById("new-task").focus();
+      });
     }
   };
 
   const removeTask = (index) => {
-    const newTasks = [...tasks];
-    console.log(`removing task`, index);
-    newTasks.splice(index, 1);
-    setTasks(newTasks);
+    swal({
+      title: "Are you sure?",
+      text: "This action can't be undone",
+      icon: "warning",
+      timer: "8000",
+      buttons: ["No", "Yes"],
+    }).then((yesRemove) => {
+      if (yesRemove) {
+        const newTasks = [...tasks];
+        console.log(`removing task`, index);
+        newTasks.splice(index, 1);
+        setTasks(newTasks);
+        swal({
+          title: "Task has been removed",
+          icon: "success",
+          timer: "4000",
+        });
+      }
+    });
   };
 
   return (

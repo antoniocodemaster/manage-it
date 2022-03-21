@@ -1,0 +1,13 @@
+.swal-overlay {
+  .swal-modal {
+    .swal-icon--error__line {
+      background-color: $redColor;
+    }
+    .swal-icon--error {
+      border-color: $redColor;
+    }
+    .swal-button--confirm {
+      background: $primaryColor;
+    }
+  }
+}
