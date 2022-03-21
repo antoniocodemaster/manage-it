@@ -1,12 +1,15 @@
 .tasks-list {
   ul.tasks-list {
-    list-style: none;
-    padding: 0px;
+    padding-left: 18px;
     li {
       margin-bottom: 10px;
       position: relative;
       border-bottom: 1px solid #e5e5e5;
       padding-bottom: 5px;
+      cursor: pointer;
+      &.task-closed {
+        text-decoration: line-through;
+      }
       .close-btn {
         background: $redColor;
         display: inline-block;

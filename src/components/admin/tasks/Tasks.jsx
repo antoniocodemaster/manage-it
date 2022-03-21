@@ -6,21 +6,54 @@ import TopBar from "../TopBar";
 const Tasks = () => {
   // state
   const [activeTheme, setActiveTheme] = useState("light-theme");
-  const [tasks, setTasks] = useState(["Bar", "Foo"]);
+  const [tasks, setTasks] = useState([
+    {
+      name: "Bar",
+      status: "open",
+    },
+    {
+      name: "Foo",
+      status: "open",
+    },
+    {
+      name: "BarFoo",
+      status: "closed",
+    },
+    {
+      name: "Foobar",
+      status: "open",
+    },
+  ]);
 
   // functions
   const changeActiveTheme = () => {
-    if (activeTheme == "light-theme") {
+    if (activeTheme === "light-theme") {
       setActiveTheme("dark-theme");
     } else {
       setActiveTheme("light-theme");
     }
   };
 
+  const swtichTaskStatus = (index) => {
+    const newTasks = [...tasks];
+    if (tasks[index].status === "open") {
+      tasks[index].status = "closed";
+    } else {
+      tasks[index].status = "open";
+    }
+    setTasks(newTasks);
+  };
+
   const addNewTask = () => {
     const newTask = document.getElementById("new-task");
-    if (newTask.value != "") {
-      setTasks([...tasks, newTask.value]);
+    if (newTask.value !== "") {
+      setTasks([
+        ...tasks,
+        {
+          name: newTask.value,
+          status: "open",
+        },
+      ]);
       newTask.value = "";
     } else {
       swal({
@@ -68,8 +101,14 @@ const Tasks = () => {
             <ul className="tasks-list">
               {tasks.map((task, index) => {
                 return (
-                  <li key={index}>
-                    {task}
+                  <li
+                    key={index}
+                    className={`task task-${task.status}`}
+                    onClick={() => {
+                      swtichTaskStatus(index);
+                    }}
+                  >
+                    {task.name}
                     <span
                       index={index}
                       onClick={() => {
