@@ -15,10 +15,7 @@
     .widgets-container {
       background: $ligthBgClolor;
       .admin-box {
-        background: #fff;
-        -webkit-box-shadow: 0 0 20px rgb(89 102 122 / 5%);
-        box-shadow: 0 0 20px rgb(89 102 122 / 5%);
-        border: 0 solid #e5e5e5;
+        background: $lightThemeElementsColor;
       }
     }
   }
