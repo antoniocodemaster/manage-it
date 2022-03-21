@@ -40,7 +40,8 @@ const Tasks = () => {
         <TopBar changeActiveTheme={changeActiveTheme} />
         <div className="widgets-container">
           <div className="admin-box tasks-list">
-            <ul>
+            <h2>Tasks list</h2>
+            <ul className="tasks-list">
               {tasks.map((task, index) => {
                 return (
                   <li key={index}>
@@ -69,14 +70,14 @@ const Tasks = () => {
               </button>
             </div>
           </div>
-          <div className="admin-box">
+          {/* <div className="admin-box">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Exercitationem, officiis. Numquam non quam id ullam ratione amet
               est aliquam, odio vero accusamus dicta eligendi eum in sit. Rem,
               hic nesciunt?
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
