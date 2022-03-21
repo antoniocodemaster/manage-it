@@ -98,7 +98,7 @@ const Tasks = () => {
         <div className="widgets-container">
           <div className="admin-box tasks-list">
             <h2>Tasks list</h2>
-            <ul className="tasks-list">
+            <ul className="tasks-list no-selection">
               {tasks.map((task, index) => {
                 return (
                   <li
