@@ -1,9 +1,10 @@
 import profilePicture from "../../images/antonio-profile-image.png";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMoon } from "@fortawesome/free-solid-svg-icons";
 import ReactTooltip from "react-tooltip";
 
-const TopBar = (props) => {
+const TopBar = ({ changeActiveTheme }) => {
   return (
     <div className="top-bar">
       <FontAwesomeIcon
@@ -15,7 +16,7 @@ const TopBar = (props) => {
 
       <FontAwesomeIcon
         icon={faMoon}
-        onClick={props.changeActiveTheme}
+        onClick={changeActiveTheme}
         data-tip="Change theme"
         data-for="themes-tooltip"
       />
@@ -25,4 +26,20 @@ const TopBar = (props) => {
   );
 };
 
-export default TopBar;
+const mapStateToProps = (state) => {
+  return {
+    activeTheme: state.activeTheme,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeActiveTheme: () => {
+      dispatch({
+        type: "change-theme",
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

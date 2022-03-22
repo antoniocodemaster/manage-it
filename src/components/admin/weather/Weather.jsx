@@ -1,24 +1,13 @@
 import LeftSideNav from "../LeftSideNav";
 import TopBar from "../TopBar";
-import React, { useState } from "react";
+import { connect } from "react-redux";
 
-const Weather = () => {
-  // state
-  const [activeTheme, setActiveTheme] = useState("light-theme");
-
-  const changeActiveTheme = () => {
-    if (activeTheme == "light-theme") {
-      setActiveTheme("dark-theme");
-    } else {
-      setActiveTheme("light-theme");
-    }
-  };
-
+const Weather = ({ activeTheme }) => {
   return (
     <div className={`${activeTheme} admin-container`}>
       <LeftSideNav />
       <div className="right-side">
-        <TopBar changeActiveTheme={changeActiveTheme} />
+        <TopBar />
         <div className="widgets-container">
           <div className="admin-box">
             <p>
@@ -34,4 +23,10 @@ const Weather = () => {
   );
 };
 
-export default Weather;
+const mapStateTopProps = (state) => {
+  return {
+    activeTheme: state.activeTheme,
+  };
+};
+
+export default connect(mapStateTopProps)(Weather);

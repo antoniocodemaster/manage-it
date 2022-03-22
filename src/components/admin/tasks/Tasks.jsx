@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import swal from "sweetalert";
 import LeftSideNav from "../LeftSideNav";
 import TopBar from "../TopBar";
 
-const Tasks = () => {
+const Tasks = ({ activeTheme }) => {
   // state
-  const [activeTheme, setActiveTheme] = useState("light-theme");
   const [tasks, setTasks] = useState([
     {
       name: "Bar",
@@ -26,14 +26,6 @@ const Tasks = () => {
   ]);
 
   // functions
-  const changeActiveTheme = () => {
-    if (activeTheme === "light-theme") {
-      setActiveTheme("dark-theme");
-    } else {
-      setActiveTheme("light-theme");
-    }
-  };
-
   const swtichTaskStatus = (index) => {
     const newTasks = [...tasks];
     if (tasks[index].status === "open") {
@@ -94,7 +86,7 @@ const Tasks = () => {
     <div className={`${activeTheme} admin-container`}>
       <LeftSideNav />
       <div className="right-side">
-        <TopBar changeActiveTheme={changeActiveTheme} />
+        <TopBar />
         <div className="widgets-container">
           <div className="admin-box tasks-list">
             <h2>Tasks list</h2>
@@ -147,4 +139,10 @@ const Tasks = () => {
   );
 };
 
-export default Tasks;
+const mapStateToProps = (state) => {
+  return {
+    activeTheme: state.activeTheme,
+  };
+};
+
+export default connect(mapStateToProps)(Tasks);
