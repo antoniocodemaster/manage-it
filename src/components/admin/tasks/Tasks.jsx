@@ -4,7 +4,7 @@ import swal from "sweetalert";
 import LeftSideNav from "../LeftSideNav";
 import TopBar from "../TopBar";
 
-const Tasks = ({activeTheme}) => {
+const Tasks = ({ activeTheme }) => {
   // state
   const [tasks, setTasks] = useState([
     {
@@ -26,14 +26,6 @@ const Tasks = ({activeTheme}) => {
   ]);
 
   // functions
-  const changeActiveTheme = () => {
-    // if (activeTheme === "light-theme") {
-    //   setActiveTheme("dark-theme");
-    // } else {
-    //   setActiveTheme("light-theme");
-    // }
-  };
-
   const swtichTaskStatus = (index) => {
     const newTasks = [...tasks];
     if (tasks[index].status === "open") {
@@ -94,7 +86,7 @@ const Tasks = ({activeTheme}) => {
     <div className={`${activeTheme} admin-container`}>
       <LeftSideNav />
       <div className="right-side">
-        <TopBar changeActiveTheme={changeActiveTheme} />
+        <TopBar />
         <div className="widgets-container">
           <div className="admin-box tasks-list">
             <h2>Tasks list</h2>
