@@ -56,7 +56,7 @@ const LeftSideNav = () => {
         <li>
           <NavLink
             activeclassname="active"
-            to="/sign-in"
+            to="/"
             data-for="logout-link-tooltip"
             data-tip="Logout"
           >

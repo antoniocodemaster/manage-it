@@ -1,6 +1,7 @@
 import LeftSideNav from "../layout/LeftSideNav";
 import TopBar from "../layout/TopBar";
 import { connect } from "react-redux";
+import WeatherInfo from "./WeatherInfo";
 
 const Weather = ({ activeTheme }) => {
   return (
@@ -9,14 +10,7 @@ const Weather = ({ activeTheme }) => {
       <div className="right-side">
         <TopBar />
         <div className="widgets-container">
-          <div className="admin-box">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem, officiis. Numquam non quam id ullam ratione amet
-              est aliquam, odio vero accusamus dicta eligendi eum in sit. Rem,
-              hic nesciunt?
-            </p>
-          </div>
+          <WeatherInfo />
         </div>
       </div>
     </div>
