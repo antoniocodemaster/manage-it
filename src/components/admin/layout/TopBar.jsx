@@ -1,4 +1,4 @@
-import profilePicture from "../../images/antonio-profile-image.png";
+import profilePicture from "../../../images/antonio-profile-image.png";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMoon } from "@fortawesome/free-solid-svg-icons";

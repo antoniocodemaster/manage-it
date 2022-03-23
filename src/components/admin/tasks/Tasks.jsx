@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import swal from "sweetalert";
-import LeftSideNav from "../LeftSideNav";
-import TopBar from "../TopBar";
+import LeftSideNav from "../layout/LeftSideNav";
+import TopBar from "../layout/TopBar";
 
 const Tasks = ({ activeTheme }) => {
   // state

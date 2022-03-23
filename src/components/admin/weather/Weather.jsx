@@ -1,5 +1,5 @@
-import LeftSideNav from "../LeftSideNav";
-import TopBar from "../TopBar";
+import LeftSideNav from "../layout/LeftSideNav";
+import TopBar from "../layout/TopBar";
 import { connect } from "react-redux";
 
 const Weather = ({ activeTheme }) => {
