@@ -1,6 +1,6 @@
-import SignIn from "./components/registration/SignIng";
-import SignUp from "./components/registration/SignUp";
-import PasswordReset from "./components/registration/PasswordReset";
+import SignIn from "./components/auth/SignIng";
+import SignUp from "./components/auth/SignUp";
+import PasswordReset from "./components/auth/PasswordReset";
 import Tasks from "./components/admin/tasks/Tasks";
 import Weather from "./components/admin/weather/Weather";
 import {
@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import reducer from "./reducers/adminPanelReducers";
+import reducer from "./reducers/adminReducer";
 import "./styles/styles.scss";
 
 function App() {
