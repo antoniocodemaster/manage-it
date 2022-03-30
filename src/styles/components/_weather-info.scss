@@ -1,0 +1,40 @@
+.weather-info {
+  display: flex;
+  img.weather-icon {
+    width: 100px;
+  }
+  div.weather-current {
+    width: 16%;
+    h2 {
+      margin-bottom: 0px;
+    }
+    p {
+      margin: 5px;
+      text-transform: capitalize;
+    }
+  }
+  ul.weather-daily {
+    width: 84%;
+    list-style: none;
+    padding: 0px;
+    display: flex;
+    li.weather-day {
+      flex-wrap: nowrap;
+      flex-grow: 1;
+      border: 1px solid #e5e5e5;
+      text-align: center;
+      margin: 0px 5px;
+      border-radius: 5px;
+      overflow: hidden;
+      p {
+        text-transform: capitalize;
+      }
+      p.day {
+        margin: 0px;
+        background: $primaryColor;
+        padding: 5px;
+        color: #fff;
+      }
+    }
+  }
+}

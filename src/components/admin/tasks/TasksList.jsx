@@ -5,20 +5,16 @@ const TasksList = () => {
   // state
   const [tasks, setTasks] = useState([
     {
-      name: "Bar",
+      name: "Walk the dog",
       status: "open",
     },
     {
-      name: "Foo",
+      name: "Work out",
       status: "open",
     },
     {
-      name: "BarFoo",
+      name: "Code and amazing React App",
       status: "closed",
-    },
-    {
-      name: "Foobar",
-      status: "open",
     },
   ]);
 
