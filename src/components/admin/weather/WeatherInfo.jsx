@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loader from "../layout/Loader";
 import formatTimeStamp from "../../../utils/formatTimeStamp";
 
 const WeatherInfo = () => {
@@ -9,9 +10,12 @@ const WeatherInfo = () => {
   const [weatherTimezone, setweatherTimezone] = useState([]);
 
   // Use effect
-  useEffect(async () => {
-    const userLocation = await getUserCurrentLocation();
-    getWeatherInfo(userLocation);
+  useEffect(() => {
+    const fetchData = async () => {
+      const userLocation = await getUserCurrentLocation();
+      getWeatherInfo(userLocation);
+    };
+    fetchData();
   }, []);
 
   // Functions
@@ -65,7 +69,7 @@ const WeatherInfo = () => {
 
   return (
     <div className="admin-box weather-info">
-      {weatherCurrent.weather && (
+      {weatherCurrent.weather ? (
         <>
           <div className="weather-current">
             <h2>Weather Info</h2>
@@ -102,6 +106,8 @@ const WeatherInfo = () => {
             })}
           </ul>
         </>
+      ) : (
+        <Loader />
       )}
     </div>
   );

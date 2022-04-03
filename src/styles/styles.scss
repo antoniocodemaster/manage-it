@@ -9,6 +9,7 @@ body {
 @import "utilities/mixins";
 
 // Components
+@import "components/loader";
 @import "components/admin-box";
 @import "components/tasks-list";
 @import "components/signin-box";
