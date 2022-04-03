@@ -17,7 +17,7 @@ const WeatherInfo = () => {
   const getWeatherInfo = async () => {
     const openWeatherApiBaseUrl =
       "https://api.openweathermap.org/data/2.5/onecall?";
-    const apiKey = "94b41ada67ac5b4e90e2b3a37d542f2b";
+    const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
     const exclude = "minutely,hourly,alerts";
     const lat = 40.73061;
     const lon = -73.935242;
