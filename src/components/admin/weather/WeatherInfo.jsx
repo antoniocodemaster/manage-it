@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loader from "../layout/Loader";
 import formatTimeStamp from "../../../utils/formatTimeStamp";
 
 const WeatherInfo = () => {
@@ -10,30 +11,37 @@ const WeatherInfo = () => {
 
   // Use effect
   useEffect(() => {
-    getWeatherInfo();
+    const fetchData = async () => {
+      const userLocation = await getUserCurrentLocation();
+      getWeatherInfo(userLocation);
+    };
+    fetchData();
   }, []);
 
   // Functions
-  const getWeatherInfo = async () => {
+  const getWeatherInfo = async (userLocation) => {
+    let lat = userLocation.lat;
+    let lon = userLocation.lon;
+    if (userLocation) {
+      lat = userLocation.lat;
+      lon = userLocation.lon;
+    } else {
+      lat = 40.6643;
+      lon = -73.9385;
+    }
     const openWeatherApiBaseUrl =
       "https://api.openweathermap.org/data/2.5/onecall?";
     const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
     const exclude = "minutely,hourly,alerts";
-    const lat = 40.73061;
-    const lon = -73.935242;
-
     let endpointUrl = `${openWeatherApiBaseUrl}lat=${lat}&lon=${lon}&`;
     endpointUrl += `exclude=${exclude}&appid=${apiKey}`;
-
     try {
       const res = await axios({
         method: "get",
         url: endpointUrl,
         headers: { "Content-Type": "application/json" },
       });
-      console.log(res.data);
       setweatherCurrent(res.data.current);
-      console.log("response");
       setweatherDaily(res.data.daily);
       setweatherTimezone(res.data.timezone);
     } catch (error) {
@@ -41,9 +49,27 @@ const WeatherInfo = () => {
     }
   };
 
+  const getUserCurrentLocation = () => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        // first function runs if user allows geo location
+        (position) => {
+          resolve({
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+          });
+        },
+        // second function runs if user reject geolocation
+        () => {
+          resolve(false);
+        }
+      );
+    });
+  };
+
   return (
     <div className="admin-box weather-info">
-      {weatherCurrent.weather && (
+      {weatherCurrent.weather ? (
         <>
           <div className="weather-current">
             <h2>Weather Info</h2>
@@ -80,6 +106,8 @@ const WeatherInfo = () => {
             })}
           </ul>
         </>
+      ) : (
+        <Loader />
       )}
     </div>
   );
