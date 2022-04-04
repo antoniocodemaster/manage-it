@@ -68,7 +68,7 @@ const WeatherInfo = () => {
   };
 
   return (
-    <div className="admin-box weather-info">
+    <div className="admin-box ag-4-4 weather-info">
       {weatherCurrent.weather ? (
         <>
           <div className="weather-current">

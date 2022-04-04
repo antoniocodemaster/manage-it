@@ -3,6 +3,7 @@ import SignUp from "./components/auth/SignUp";
 import PasswordReset from "./components/auth/PasswordReset";
 import Tasks from "./components/admin/tasks/Tasks";
 import Weather from "./components/admin/weather/Weather";
+import Grid from "./components/admin/grid/Grid";
 import {
   BrowserRouter as Router,
   Route,
@@ -26,6 +27,7 @@ function App() {
             <Route path="/password-reset" element={<PasswordReset />} />
             <Route path="/admin/tasks" element={<Tasks />} />
             <Route path="/admin/weather" element={<Weather />} />
+            <Route path="/admin/grid" element={<Grid />} />
           </Routes>
         </BrowserRouter>
       </Provider>
