@@ -6,6 +6,7 @@
     }
   }
   .right-side {
+    background: $darkBgColor;
     .top-bar {
       background: $darkThemeElementsColor;
       svg.svg-inline--fa {
@@ -13,7 +14,6 @@
       }
     }
     .widgets-container {
-      background: $darkBgColor;
       .admin-box {
         background: $darkThemeElementsColor;
         * {
