@@ -5,7 +5,7 @@ const SignIn = () => {
     e.preventDefault();
     console.log("form submitted");
     // authenticate user and send them to admin
-    window.location = "/admin/tasks";
+    window.location = "/admin/charts";
   };
 
   return (
