@@ -5,7 +5,7 @@ import {
   faPen,
   faCloud,
   faPowerOff,
-  faHeart,
+  faBorderAll,
 } from "@fortawesome/free-solid-svg-icons";
 
 const LeftSideNav = () => {
@@ -41,15 +41,16 @@ const LeftSideNav = () => {
         <li>
           <NavLink
             activeclassname="active"
-            to="#"
-            data-for="favorites-link-tooltip"
-            data-tip="Favorites"
+            to="/admin/grid"
+            data-for="grid-link-tooltip"
+            data-tip="Grid"
           >
-            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon icon={faBorderAll} />
             <ReactTooltip
-              id="favorites-link-tooltip"
+              id="grid-link-tooltip"
               type="light"
               effect="solid"
+              place="right"
             />
           </NavLink>
         </li>
