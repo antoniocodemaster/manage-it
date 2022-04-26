@@ -48,11 +48,11 @@ const data = [
 const SimpleRadarChart = () => {
   return (
     <RadarChart
-      cx={300}
-      cy={250}
+      cx={250}
+      cy={150}
       outerRadius={150}
-      width={500}
-      height={500}
+      width={400}
+      height={400}
       data={data}
     >
       <PolarGrid />
