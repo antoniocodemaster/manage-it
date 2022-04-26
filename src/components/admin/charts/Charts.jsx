@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import LeftSideNav from "../layout/LeftSideNav";
 import TopBar from "../layout/TopBar";
+import SimpleBarChart from "./SimpleBarChart";
+import SimpleRadarChart from "./SimpleRadarChart";
+import PieChartWithCustomizedLabel from "./PieChartWithCustomizedLabel";
+import PieChartWithPaddingAngle from "./PieChartWithPaddingAngle";
 
 const Charts = ({ activeTheme }) => {
   return (
@@ -9,8 +13,18 @@ const Charts = ({ activeTheme }) => {
       <div className="right-side">
         <TopBar />
         <div className="widgets-container">
-          <div className="admin-box ag-1-4">
-            <p className="big-text">1/4</p>
+          <div className="admin-box ag-2-4">
+            <PieChartWithCustomizedLabel />
+          </div>
+          <div className="admin-box ag-2-4">
+            <SimpleBarChart />
+          </div>
+          <div className="admin-box ag-2-4">
+            <SimpleRadarChart />
+          </div>
+
+          <div className="admin-box ag-2-4">
+            <PieChartWithPaddingAngle />
           </div>
         </div>
       </div>
