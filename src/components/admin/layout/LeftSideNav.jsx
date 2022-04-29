@@ -6,12 +6,28 @@ import {
   faCloud,
   faPowerOff,
   faBorderAll,
+  faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
 
 const LeftSideNav = () => {
   return (
     <div className="left-side-nav">
       <ul>
+        <li>
+          <NavLink
+            activeclassname="active"
+            to="/admin/charts"
+            data-tip="Charts"
+            data-for="charts-link-tooltip"
+          >
+            <FontAwesomeIcon icon={faChartLine} />
+            <ReactTooltip
+              id="charts-link-tooltip"
+              type="light"
+              effect="solid"
+            />
+          </NavLink>
+        </li>
         <li>
           <NavLink
             activeclassname="active"
