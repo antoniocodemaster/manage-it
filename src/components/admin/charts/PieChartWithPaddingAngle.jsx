@@ -10,11 +10,11 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const PieChartWithPaddingAngle = () => {
   return (
-    <PieChart width={200} height={200} className="pie-chart">
+    <PieChart width={200} height={300} className="pie-chart">
       <Pie
         data={data}
-        cx={100}
-        cy={100}
+        cx="50%"
+        cy="50%"
         innerRadius={60}
         outerRadius={80}
         fill="#8884d8"
