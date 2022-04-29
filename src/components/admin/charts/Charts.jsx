@@ -14,6 +14,9 @@ const Charts = ({ activeTheme }) => {
       <div className="right-side">
         <TopBar />
         <div className="widgets-container graphics-page">
+          <div className="title-box">
+            <h1>Report Graphics</h1>
+          </div>
           <div className="admin-box ag-2-4">
             <SimpleBarChart />
           </div>

@@ -54,8 +54,8 @@ const data = [
 const SimpleAreaChart = () => {
   return (
     <AreaChart
-      width={500}
-      height={400}
+      width={800}
+      height={300}
       data={data}
       margin={{
         top: 10,
