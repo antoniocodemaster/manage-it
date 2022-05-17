@@ -45,7 +45,7 @@ const WeatherInfo = () => {
       setweatherDaily(res.data.daily);
       setweatherTimezone(res.data.timezone);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
   };
 
@@ -60,7 +60,8 @@ const WeatherInfo = () => {
           });
         },
         // second function runs if user reject geolocation
-        () => {
+        (err) => {
+          console.warn("ERROR(" + err.code + "): " + err.message);
           resolve(false);
         }
       );
