@@ -15,6 +15,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers/adminReducer";
 import "./styles/styles.scss";
+import EditProfile from "./components/admin/edit-profile/EditProfile";
 
 function App() {
   const store = createStore(reducer);
@@ -30,6 +31,7 @@ function App() {
             <Route path="/admin/tasks" element={<Tasks />} />
             <Route path="/admin/weather" element={<Weather />} />
             <Route path="/admin/grid" element={<Grid />} />
+            <Route path="/admin/edit-profile" element={<EditProfile />} />
           </Routes>
         </BrowserRouter>
       </Provider>

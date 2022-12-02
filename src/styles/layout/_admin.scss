@@ -28,6 +28,8 @@
     width: calc(100% - 50px);
     overflow: hidden;
     background: $ligthBgClolor;
+    display: flex;
+    flex-direction: column;
     .top-bar {
       height: 40px;
       padding-right: 20px;
@@ -48,6 +50,11 @@
         margin-bottom: auto;
         cursor: pointer;
         padding: 3px;
+      }
+      .dropdown-item-icon {
+        svg {
+          margin-left: 0;
+        }
       }
     }
   }

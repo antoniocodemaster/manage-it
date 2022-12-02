@@ -1,0 +1,14 @@
+.screenshot-container {
+   display: flex;
+   flex-direction: column;
+   .user-video {
+      width: 90%;
+      margin: auto;
+      margin-top: 2rem;
+      border-radius: 4px;
+   }
+   .take-screenshot-btn {
+      margin: auto;
+      margin-top: 1rem;
+   }
+}

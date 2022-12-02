@@ -70,7 +70,7 @@ const LeftSideNav = () => {
             />
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             activeclassname="active"
             to="/"
@@ -84,7 +84,7 @@ const LeftSideNav = () => {
               effect="solid"
             />
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

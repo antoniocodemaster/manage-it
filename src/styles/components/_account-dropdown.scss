@@ -1,0 +1,51 @@
+.account-dropdown {
+  z-index: 2022;
+  position: absolute;
+  padding: 1rem;
+  right: 0;
+  margin-right: 2rem;
+  border-radius: 0.3rem;
+  background: #fff;
+  box-shadow: 2px 2px 9px 0px #d0d0d0;
+  display: none;
+  top: 2.5rem;
+  &.active {
+    display: block;
+  }
+  .dropdown-items {
+    margin: 0;
+    padding-left: 0;
+    li {
+      list-style: none;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: #252525;
+    }
+    .dropdown-item-icon {
+      display: flex;
+      height: 2.5rem;
+      width: 2.5rem;
+      background: #f2f2f2;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      color: $primaryColor;
+    }
+    .dropdown-item {
+      border-radius: 0.3rem;
+      display: flex;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      color: #212121;
+      align-items: center;
+      gap: 0.8rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

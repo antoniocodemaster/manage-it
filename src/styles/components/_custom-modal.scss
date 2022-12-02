@@ -1,0 +1,52 @@
+.custom-modal {
+   padding: 1rem;
+   color: #000;
+   position: fixed;
+   z-index: -1;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   display: flex;
+   background: rgba(0, 0, 0, 0.6);
+   transition: all ease 0.3s;
+   backdrop-filter: blur(3px);
+   opacity: 0;
+   &.active {
+      z-index: 99999;
+      opacity: 1;
+      .custom-modal-content-wrap {
+         transform: scale(1);
+      }
+   }
+   .custom-modal-content-wrap {
+      display: flex;
+      transition: transform ease 0.3s;
+      transform: scale(0.2);
+      margin: auto;
+      background: #fff;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      @media only screen and (max-width: 576px) {
+         min-width: 90%;
+      }
+      .close-modal-btn {
+         cursor: pointer;
+         position: absolute;
+         color: #6e6e6e;
+         background: none;
+         border: none;
+         top: 5px;
+         right: 0;
+         margin-right: 0.5rem;
+         font-size: 1.5em;
+         transition: color ease 0.3s;
+         &:hover {
+            color: #000;
+         }
+      }
+      .custom-modal-content {
+         width: 100%;
+      }
+   }
+}

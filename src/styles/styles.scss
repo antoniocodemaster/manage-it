@@ -4,6 +4,7 @@ body {
 }
 
 // Utilities
+@import "utilities/general";
 @import "utilities/variables";
 @import "utilities/mixins";
 @import "utilities/typography";
@@ -19,6 +20,11 @@ body {
 @import "components/tooltips";
 @import "components/sweet-alert";
 @import "components/weather-info";
+@import "components/custom-modal";
+@import "components/account-dropdown";
+@import "components/change-img";
+@import "components/screenshot-container";
+
 
 // Layouts
 @import "layout/admin";
@@ -29,6 +35,7 @@ body {
 @import "pages/signIn";
 @import "pages/tasks";
 @import "pages/graphics";
+@import "pages/edit-profile-page.scss";
 
 // Themes
 @import "themes/themes-change-transition";

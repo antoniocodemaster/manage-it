@@ -1,7 +1,49 @@
 label {
-    font-weight: 600;
-    margin-bottom: 10px;
-    display: inline-block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.input-wrapper {
+  margin-bottom: 20px;
+  position: relative;
+  &.invalid {
+     input,
+     textarea {
+        transition: border-color ease 0.3s;
+        border-color: #ff2222;
+        &:focus {
+           outline: 1px solid #ff2222;
+        }
+     }
+     .danger-icon {
+        opacity: 1;
+     }
+  }
+  input {
+     margin-bottom: 0;
+  }
+  .danger-icon {
+     font-size: 1.5em;
+     opacity: 0;
+     transition: opacity ease 0.3s;
+     right: 0;
+     min-width: 30px;
+     min-height: 30px;
+     position: absolute;
+     color: #fff;
+     top: 7px;
+     margin-right: 0.5rem;
+     display: flex;
+     top: 50%;
+     transform: translateY(-50%);
+     svg {
+        margin: auto;
+        border: 1px solid #ff2222;
+        background: #ff2222;
+        border-radius: 50%;
+     }
+  }
 }
 
 input {
