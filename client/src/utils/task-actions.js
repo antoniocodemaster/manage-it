@@ -1,0 +1,59 @@
+import axios from "axios";
+
+const { REACT_APP_API_URL } = process.env;
+
+export const getAllTasks = async () => {
+  const URL = `${REACT_APP_API_URL}/tasks/get-tasks`;
+
+  try {
+    const { data } = await axios.get(URL);
+
+    return [data.tasks, null];
+  } catch (error) {
+    const errMsg = error?.response?.data.msg || error.message;
+
+    return [null, errMsg];
+  }
+};
+
+export const addNewTask = async (taskData) => {
+  const URL = `${REACT_APP_API_URL}/tasks/new`;
+
+  try {
+    const { data } = await axios.post(URL, taskData);
+
+    return [data.createdTask, null];
+  } catch (error) {
+    const errMsg = error?.response?.data.msg || error.message;
+
+    return [null, errMsg];
+  }
+};
+
+export const updateTask = async (id, taskData) => {
+  const URL = `${REACT_APP_API_URL}/tasks/update/${id}`;
+
+  try {
+    const { data } = await axios.put(URL, taskData);
+
+    return [data.updatedTask, null];
+  } catch (error) {
+    const errMsg = error?.response?.data.msg || error.message;
+
+    return [null, errMsg];
+  }
+};
+
+export const deleteTask = async (id) => {
+  const URL = `${REACT_APP_API_URL}/tasks/delete/${id}`;
+
+  try {
+    const { data } = await axios.delete(URL);
+
+    return [data.deletedATask, null];
+  } catch (error) {
+    const errMsg = error?.response?.data.msg || error.message;
+
+    return [null, errMsg];
+  }
+};
