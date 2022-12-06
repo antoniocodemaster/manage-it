@@ -20,9 +20,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/tasks", require("./routes/tasks"));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(join(__dirname, "../client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(join(__dirname, "../client/build/index.html"));
+});
 
 app.listen(PORT, HOST, () =>
   console.log(`server running at http://${HOST || "localhost"}:${PORT}`)
