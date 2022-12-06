@@ -4,6 +4,7 @@ import {
   getAllTasks,
   addNewTask as addNewTaskDB,
   deleteTask,
+  updateTask,
 } from "../../../utils/task-actions";
 
 const TasksList = () => {
@@ -12,13 +13,27 @@ const TasksList = () => {
 
   // functions
   const swtichTaskStatus = (id) => {
-    setTasks((prev) =>
-      prev.map((task) => {
+    setTasks((prev) => {
+      return prev.map((task) => {
         if (task.id === id) {
-          const updatedTask = { ...task };
+          const taskStatus =
+            task.status === "completed" ? "uncompleted" : "completed";
+
+          const updatedTask = {
+            ...task,
+            status: taskStatus,
+          };
+
+          updateTask(id, {
+            status: taskStatus,
+          });
+
+          return updatedTask;
         }
-      })
-    );
+
+        return task;
+      });
+    });
   };
 
   const addNewTask = async () => {
@@ -96,22 +111,21 @@ const TasksList = () => {
       <ul className="tasks-list no-selection">
         {tasks.map((task, index) => {
           return (
-            <li
-              key={index}
-              className={`task task-${task.status}`}
-              onClick={() => {
-                swtichTaskStatus(task.id);
-              }}
-            >
-              {task.name}
+            <li key={index} className={`task task-${task.status}`}>
               <span
-                index={index}
+                onClick={() => {
+                  swtichTaskStatus(task.id);
+                }}
+              >
+                {task.name}
+              </span>
+              <span
                 onClick={() => {
                   removeTask(task.id);
                 }}
                 className="close-btn"
               >
-                x
+                ✕
               </span>
             </li>
           );

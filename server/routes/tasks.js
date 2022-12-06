@@ -26,7 +26,6 @@ router.post(
 router.put(
   "/update/:id",
   [
-    check("name", "Task name is required").not().isEmpty(),
     check("id", "Invalid task id").isMongoId(),
     isValidObjectData,
     validateFields,

@@ -32,8 +32,6 @@ const addNewTask = async (req, res = response) => {
 };
 
 const updateTask = async (req, res = response) => {
-  const { name } = req.body;
-
   const { id } = req.params;
 
   try {
@@ -41,19 +39,15 @@ const updateTask = async (req, res = response) => {
 
     if (!taskDB) return res.status(400).json({ msg: "Invalid task" });
 
-    const updatedTask = await Task.findByIdAndUpdate(
-      id,
-      { name },
-      { new: true }
-    );
+    const updatedTask = await Task.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
 
     res.json({ ok: true, updatedTask });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.status(500).json({ msg: "Internal server error" });
   }
-
-  res.json("update task route");
 };
 
 const deleteTask = async (req, res = response) => {
