@@ -1,0 +1,25 @@
+.dark-theme.admin-container {
+  .left-side-nav {
+    background: $darkThemeElementsColor;
+    svg.svg-inline--fa {
+      color: #fff;
+    }
+  }
+  .right-side {
+    background: $darkBgColor;
+    .top-bar {
+      background: $darkThemeElementsColor;
+      svg.svg-inline--fa {
+        color: #fff;
+      }
+    }
+    .widgets-container {
+      .admin-box {
+        background: $darkThemeElementsColor;
+        * {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
