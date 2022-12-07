@@ -2,9 +2,15 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuthUser } from "../../reducers/authReducer";
 
 const AccountDropdown = ({ isDropdownActive }) => {
-  const handleLogout = () => {};
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(setAuthUser(null));
+  };
 
   return (
     <div className={`account-dropdown${isDropdownActive ? " active" : ""}`}>
