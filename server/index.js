@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/tasks", require("./routes/tasks"));
 
+app.use("/api/auth", require("./routes/auth"));
+
 app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "../client/build/index.html"));
 });

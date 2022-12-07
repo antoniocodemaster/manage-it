@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import LeftSideNav from "../layout/LeftSideNav";
 import TopBar from "../layout/TopBar";
 import SimpleBarChart from "./SimpleBarChart";
@@ -7,7 +7,9 @@ import SimpleAreaChart from "./SimpleAreaChart";
 import PieChartWithCustomizedLabel from "./PieChartWithCustomizedLabel";
 import PieChartWithPaddingAngle from "./PieChartWithPaddingAngle";
 
-const Charts = ({ activeTheme }) => {
+const Charts = () => {
+  const { activeTheme } = useSelector((state) => state.admin);
+
   return (
     <div className={`${activeTheme} admin-container`}>
       <LeftSideNav />

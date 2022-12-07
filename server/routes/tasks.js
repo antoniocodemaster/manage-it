@@ -8,14 +8,16 @@ const {
 } = require("../controllers/tasks");
 const isValidObjectData = require("../middlewares/isValidObjectData");
 const { validateFields } = require("../middlewares/validate-fields");
+const { validateJWT } = require("../middlewares/validate-jwt");
 
 const router = Router();
 
-router.get("/get-tasks", getTasks);
+router.get("/get-tasks", [validateJWT], getTasks);
 
 router.post(
   "/new",
   [
+    validateJWT,
     check("name", "Task name is required").not().isEmpty(),
     isValidObjectData,
     validateFields,
@@ -26,6 +28,7 @@ router.post(
 router.put(
   "/update/:id",
   [
+    validateJWT,
     check("id", "Invalid task id").isMongoId(),
     isValidObjectData,
     validateFields,
@@ -35,7 +38,7 @@ router.put(
 
 router.delete(
   "/delete/:id",
-  [check("id", "Invalid task id").isMongoId(), validateFields],
+  [validateJWT, check("id", "Invalid task id").isMongoId(), validateFields],
   deleteTask
 );
 

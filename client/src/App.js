@@ -5,20 +5,15 @@ import Tasks from "./components/admin/tasks/Tasks";
 import Weather from "./components/admin/weather/Weather";
 import Grid from "./components/admin/grid/Grid";
 import Charts from "./components/admin/charts/Charts";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  BrowserRouter,
-} from "react-router-dom";
-import { createStore } from "redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import reducer from "./reducers/adminReducer";
 import "./styles/styles.scss";
 import EditProfile from "./components/admin/edit-profile/EditProfile";
+import generateStore from "./store/store";
 
 function App() {
-  const store = createStore(reducer);
+  const store = generateStore();
+
   return (
     <div className="App">
       <Provider store={store}>

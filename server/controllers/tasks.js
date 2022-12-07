@@ -7,7 +7,7 @@ const getTasks = async (req, res = response) => {
   const { limit = DEFAULT_TASKS_LIMIT, offset = 0 } = req.query;
 
   try {
-    const tasks = await Task.find().skip(+offset).limit(+limit);
+    const tasks = await Task.find({ uid: req.uid }).skip(+offset).limit(+limit);
 
     res.json({ ok: true, tasks });
   } catch (error) {
@@ -20,7 +20,7 @@ const addNewTask = async (req, res = response) => {
   const { name } = req.body;
 
   try {
-    const newTask = new Task({ name });
+    const newTask = new Task({ name, uid: req.uid });
 
     await newTask.save();
 

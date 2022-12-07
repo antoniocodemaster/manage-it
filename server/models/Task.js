@@ -10,6 +10,12 @@ const TaskSchema = Schema({
     default: "uncompleted",
     required: true,
   },
+
+  uid: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "AuthUsers",
+  },
 });
 
 TaskSchema.method("toJSON", function () {

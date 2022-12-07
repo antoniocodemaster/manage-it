@@ -1,4 +1,5 @@
 {
+  "homepage": "./",
   "name": "manage-it",
   "version": "0.1.0",
   "private": true,
@@ -18,13 +19,14 @@
     "react-tooltip": "^4.2.21",
     "recharts": "^2.1.9",
     "redux": "^4.1.2",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.49.9",
     "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set BUILD_PATH=./dist && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import swal from "sweetalert";
 import useForm from "../../../hooks/useForm";
 import validateField from "../../../utils/validateField";
@@ -7,7 +7,7 @@ import ChangeAvatarModal from "../../snippets/ChangeAvatarModal";
 import InputWrapper from "../../snippets/InputWrapper";
 import LeftSideNav from "../layout/LeftSideNav";
 import TopBar from "../layout/TopBar";
-import profileImgSrc from "../../../images/antonio-profile-image.png"
+import profileImgSrc from "../../../images/antonio-profile-image.png";
 
 const initialAuthUser = {
   username: "antonioAdmin",
@@ -17,7 +17,9 @@ const initialAuthUser = {
   address: "asdasd",
 };
 
-const EditProfile = ({ activeTheme }) => {
+const EditProfile = () => {
+  const { activeTheme } = useSelector((state) => state.admin);
+
   const [user, handleInputChange, resetForm] = useForm(initialAuthUser);
 
   const { username, firstName, lastName, phoneNumber, address } = user;

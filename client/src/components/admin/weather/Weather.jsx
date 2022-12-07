@@ -1,9 +1,11 @@
 import LeftSideNav from "../layout/LeftSideNav";
 import TopBar from "../layout/TopBar";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import WeatherInfo from "./WeatherInfo";
 
-const Weather = ({ activeTheme }) => {
+const Weather = () => {
+  const { activeTheme } = useSelector((state) => state.admin);
+
   return (
     <div className={`${activeTheme} admin-container`}>
       <LeftSideNav />

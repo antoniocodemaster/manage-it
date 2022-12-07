@@ -102,7 +102,7 @@ const TasksList = () => {
   };
 
   useEffect(() => {
-    getAllTasks().then(([tasks]) => setTasks(tasks));
+    getAllTasks().then(([tasks]) => setTasks(tasks || []));
   }, []);
 
   return (
