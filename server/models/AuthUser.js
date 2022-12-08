@@ -11,6 +11,26 @@ const AuthUserSchema = Schema({
     type: String,
     required: true,
   },
+
+  firstName: {
+    type: String,
+  },
+
+  lastName: {
+    type: String
+  }, 
+
+  emailAdd: {
+    type: String
+  }, 
+
+  phoneNumber: {
+    type: String
+  },
+
+  picture: {
+    type: String
+  }
 });
 
 AuthUserSchema.method("toJSON", function () {

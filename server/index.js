@@ -1,5 +1,6 @@
 const express = require("express");
 const dbConnection = require("./db/config");
+const fileUpload = require("express-fileupload");
 const cors = require("cors");
 require("dotenv").config();
 const { join } = require("path");
@@ -12,6 +13,14 @@ app.use(express.json());
 
 dbConnection();
 
+const fileUploadConfig = {
+  useTempFiles: true,
+  tempFileDir: "/tmp/",
+  createParentPath: true,
+};
+
+app.use(fileUpload(fileUploadConfig));
+
 app.use(express.static(join(__dirname, "../client/build")));
 
 app.get("/", (req, res) => {
@@ -21,6 +30,8 @@ app.get("/", (req, res) => {
 app.use("/api/tasks", require("./routes/tasks"));
 
 app.use("/api/auth", require("./routes/auth"));
+
+app.use("/api/uploads", require("./routes/uploads"))
 
 app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "../client/build/index.html"));
