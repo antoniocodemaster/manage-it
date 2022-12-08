@@ -31,15 +31,15 @@ const updateAuthUserPic = async (req, res = response) => {
       folder: "manage-it/authUsers",
     });
 
-    const userToUpdate = { ...authUserDB, picture: secure_url };
+    const updatedUserImg = await AuthUser.findByIdAndUpdate(
+      id,
+      { picture: secure_url },
+      {
+        new: true,
+      }
+    );
 
-    console.log(secure_url)
-
-    const updatedUserImg = await AuthUser.findByIdAndUpdate(id, userToUpdate, {
-      new: true,
-    });
-
-    res.json({ ok: true, user: "cagar ok" });
+    res.json({ ok: true, user: updatedUserImg });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Internal server error" });
