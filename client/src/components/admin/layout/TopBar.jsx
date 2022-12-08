@@ -1,19 +1,30 @@
 import profilePicture from "../../../images/antonio-profile-image.png";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMoon } from "@fortawesome/free-solid-svg-icons";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
 import AccountDropdown from "../../snippets/AccountDropdown";
+import { changeTheme } from "../../../reducers/adminReducer";
 
-const TopBar = ({ changeActiveTheme }) => {
+const TopBar = () => {
+  const dispatch = useDispatch();
+
+  const { activeTheme } = useSelector((state) => state.admin);
+
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  const handleOpenDrodown = () => setIsDropdownActive(true)
+  const handleOpenDrodown = () => setIsDropdownActive(true);
+
+  const handleChangeTheme = () => {
+    dispatch(
+      changeTheme(activeTheme === "light-theme" ? "dark-theme" : "light-theme")
+    );
+  };
 
   useEffect(() => {
     const handleCloseAccDropdown = () => {
-       isDropdownActive && setIsDropdownActive(false);
+      isDropdownActive && setIsDropdownActive(false);
     };
 
     document.addEventListener("click", handleCloseAccDropdown);
@@ -21,12 +32,9 @@ const TopBar = ({ changeActiveTheme }) => {
     return () => document.removeEventListener("click", handleCloseAccDropdown);
   }, [isDropdownActive]);
 
-
   return (
     <div className="top-bar">
-      <AccountDropdown
-        isDropdownActive={isDropdownActive}
-      />
+      <AccountDropdown isDropdownActive={isDropdownActive} />
       <FontAwesomeIcon
         icon={faBell}
         data-tip="Notifications"
@@ -36,12 +44,17 @@ const TopBar = ({ changeActiveTheme }) => {
 
       <FontAwesomeIcon
         icon={faMoon}
-        onClick={changeActiveTheme}
+        onClick={handleChangeTheme}
         data-tip="Change theme"
         data-for="themes-tooltip"
       />
       <ReactTooltip id="themes-tooltip" type="light" effect="solid" />
-      <img onClick={handleOpenDrodown} className="profile-picture" src={profilePicture} alt="" />
+      <img
+        onClick={handleOpenDrodown}
+        className="profile-picture"
+        src={profilePicture}
+        alt=""
+      />
     </div>
   );
 };

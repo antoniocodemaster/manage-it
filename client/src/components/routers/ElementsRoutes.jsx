@@ -10,6 +10,7 @@ import Weather from "../admin/weather/Weather";
 import PasswordReset from "../auth/PasswordReset";
 import SignIn from "../auth/SignIng";
 import SignUp from "../auth/SignUp";
+import Dashboard from "./Dashboard";
 
 const ElementsRoutes = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,13 @@ const ElementsRoutes = () => {
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/password-reset" element={<PasswordReset />} />
-          <Route path="/admin/charts" element={<Charts />} />
-          <Route path="/admin/tasks" element={<Tasks />} />
-          <Route path="/admin/weather" element={<Weather />} />
-          <Route path="/admin/grid" element={<Grid />} />
-          <Route path="/admin/edit-profile" element={<EditProfile />} />
+          <Route path="/admin" element={<Dashboard />}>
+            <Route path="charts" element={<Charts />} />
+            <Route path="tasks" element={<Tasks />} />
+            <Route path="weather" element={<Weather />} />
+            <Route path="grid" element={<Grid />} />
+            <Route path="edit-profile" element={<EditProfile />} />
+          </Route>
         </>
       )}
     </Routes>

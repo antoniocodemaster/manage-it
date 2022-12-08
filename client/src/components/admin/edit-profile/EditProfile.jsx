@@ -97,86 +97,78 @@ const EditProfile = () => {
   }, [username, firstName, lastName, phoneNumber, address]);
 
   return (
-    <div className={`${activeTheme} admin-container`}>
-      <LeftSideNav />
-      <div className="right-side">
-        <TopBar />
-        <div className="widgets-container edit-page">
-          <ChangeAvatarModal
-            onChangeAvatar={handleChangeAvatar}
-            isModalActive={isModalActive}
-            setIsModalActive={setIsModalActive}
-          />
-          <div className="admin-box ag-3-4">
-            <div className="user-info">
-              <img src={avatarImgSrc} alt={firstName} />
-              <h2>{firstName}</h2>
-            </div>
-            <div className="edit-profile-form">
-              <form onSubmit={handleUpdateUserInfo}>
-                <label htmlFor="first-name">First Name</label>
-                <InputWrapper
-                  activeClass={userValidations.firstName === false && "invalid"}
-                >
-                  <input
-                    name="firstName"
-                    value={firstName || ""}
-                    onChange={handleInputChange}
-                    id="first-name"
-                    type="text"
-                  />
-                </InputWrapper>
-                <label htmlFor="last-name">Last Name</label>
-                <InputWrapper
-                  activeClass={userValidations.lastName === false && "invalid"}
-                >
-                  <input
-                    name="lastName"
-                    value={lastName || ""}
-                    onChange={handleInputChange}
-                    id="last-name"
-                    type="text"
-                  />
-                </InputWrapper>
-                <label htmlFor="phone-number">Phone Number</label>
-                <InputWrapper
-                  activeClass={
-                    userValidations.phoneNumber === false && "invalid"
-                  }
-                >
-                  <input
-                    name="phoneNumber"
-                    value={phoneNumber || ""}
-                    onChange={handleInputChange}
-                    id="phone-number"
-                    type="text"
-                  />
-                </InputWrapper>
-                <label htmlFor="address">Address</label>
-                <InputWrapper
-                  activeClass={userValidations.address === false && "invalid"}
-                >
-                  <input
-                    name="address"
-                    value={address || ""}
-                    onChange={handleInputChange}
-                    id="address"
-                    type="text"
-                  />
-                </InputWrapper>
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-                <button
-                  onClick={handleOpenModal}
-                  type="button"
-                  className="btn btn-secondary btn-change-image"
-                >
-                  Change profile image
-                </button>
-              </form>
-            </div>
-          </div>
+    <div className="widgets-container edit-page">
+      <ChangeAvatarModal
+        onChangeAvatar={handleChangeAvatar}
+        isModalActive={isModalActive}
+        setIsModalActive={setIsModalActive}
+      />
+      <div className="admin-box ag-3-4">
+        <div className="user-info">
+          <img src={avatarImgSrc} alt={firstName} />
+          <h2>{firstName}</h2>
+        </div>
+        <div className="edit-profile-form">
+          <form onSubmit={handleUpdateUserInfo}>
+            <label htmlFor="first-name">First Name</label>
+            <InputWrapper
+              activeClass={userValidations.firstName === false && "invalid"}
+            >
+              <input
+                name="firstName"
+                value={firstName || ""}
+                onChange={handleInputChange}
+                id="first-name"
+                type="text"
+              />
+            </InputWrapper>
+            <label htmlFor="last-name">Last Name</label>
+            <InputWrapper
+              activeClass={userValidations.lastName === false && "invalid"}
+            >
+              <input
+                name="lastName"
+                value={lastName || ""}
+                onChange={handleInputChange}
+                id="last-name"
+                type="text"
+              />
+            </InputWrapper>
+            <label htmlFor="phone-number">Phone Number</label>
+            <InputWrapper
+              activeClass={userValidations.phoneNumber === false && "invalid"}
+            >
+              <input
+                name="phoneNumber"
+                value={phoneNumber || ""}
+                onChange={handleInputChange}
+                id="phone-number"
+                type="text"
+              />
+            </InputWrapper>
+            <label htmlFor="address">Address</label>
+            <InputWrapper
+              activeClass={userValidations.address === false && "invalid"}
+            >
+              <input
+                name="address"
+                value={address || ""}
+                onChange={handleInputChange}
+                id="address"
+                type="text"
+              />
+            </InputWrapper>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+            <button
+              onClick={handleOpenModal}
+              type="button"
+              className="btn btn-secondary btn-change-image"
+            >
+              Change profile image
+            </button>
+          </form>
         </div>
       </div>
     </div>

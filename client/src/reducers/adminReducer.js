@@ -2,18 +2,12 @@ const initialState = {
   activeTheme: "light-theme",
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const adminReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case "change-theme":
-      let theme = "";
-      if (state.activeTheme === "light-theme") {
-        theme = "dark-theme";
-      } else {
-        theme = "light-theme";
-      }
       return {
         ...state,
-        activeTheme: theme,
+        activeTheme: payload,
       };
 
     default:
@@ -21,4 +15,9 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export const changeTheme = (theme) => ({
+  type: "change-theme",
+  payload: theme,
+});
+
+export default adminReducer;

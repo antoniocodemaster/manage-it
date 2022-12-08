@@ -7,14 +7,8 @@ const Tasks = () => {
   const { activeTheme } = useSelector((state) => state.admin);
 
   return (
-    <div className={`${activeTheme} admin-container`}>
-      <LeftSideNav />
-      <div className="right-side">
-        <TopBar />
-        <div className="widgets-container">
-          <Taskslist />
-        </div>
-      </div>
+    <div className="widgets-container">
+      <Taskslist />
     </div>
   );
 };

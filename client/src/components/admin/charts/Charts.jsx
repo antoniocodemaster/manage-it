@@ -11,30 +11,24 @@ const Charts = () => {
   const { activeTheme } = useSelector((state) => state.admin);
 
   return (
-    <div className={`${activeTheme} admin-container`}>
-      <LeftSideNav />
-      <div className="right-side">
-        <TopBar />
-        <div className="widgets-container graphics-page">
-          <div className="title-box">
-            <h1>Report Graphics</h1>
-          </div>
-          <div className="admin-box ag-2-4">
-            <SimpleBarChart />
-          </div>
-          <div className="admin-box ag-1-4">
-            <PieChartWithCustomizedLabel />
-          </div>
-          <div className="admin-box ag-1-4">
-            <PieChartWithPaddingAngle />
-          </div>
-          <div className="admin-box ag-2-4">
-            <SimpleAreaChart />
-          </div>
-          <div className="admin-box ag-2-4">
-            <SimpleRadarChart />
-          </div>
-        </div>
+    <div className="widgets-container graphics-page">
+      <div className="title-box">
+        <h1>Report Graphics</h1>
+      </div>
+      <div className="admin-box ag-2-4">
+        <SimpleBarChart />
+      </div>
+      <div className="admin-box ag-1-4">
+        <PieChartWithCustomizedLabel />
+      </div>
+      <div className="admin-box ag-1-4">
+        <PieChartWithPaddingAngle />
+      </div>
+      <div className="admin-box ag-2-4">
+        <SimpleAreaChart />
+      </div>
+      <div className="admin-box ag-2-4">
+        <SimpleRadarChart />
       </div>
     </div>
   );

@@ -44,13 +44,10 @@ const loginUser = async (req, res = response) => {
 
     const token = await generateJWT(user.id, user.name);
 
-    const { id: uid, ...rest } = user.toJSON();
-
     res.json({
       ok: true,
       msg: "Login",
-      ...rest,
-      uid,
+      ...user.toJSON(),
       token,
     });
   } catch (error) {
@@ -66,9 +63,7 @@ const renewToken = async (req, res = response) => {
 
   const userDB = await AuthUser.findById(uid);
 
-  const { id, ...rest } = userDB.toJSON();
-
-  res.json({ ...rest, uid, token });
+  res.json({ ...userDB.toJSON(), token });
 };
 
 module.exports = { createAuthUser, loginUser, renewToken };

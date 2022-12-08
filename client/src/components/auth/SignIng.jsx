@@ -57,8 +57,6 @@ const SignIn = () => {
 
     const [userDB, err] = await loginUser(user);
 
-    const { uid, ...rest } = userDB;
-
     if (err) {
       return swal({
         title: err,
@@ -68,12 +66,10 @@ const SignIn = () => {
       });
     }
 
-    const authUser = { ...rest, id: uid };
+    localStorage.authUser = JSON.stringify(userDB);
+    localStorage.token = userDB.token;
 
-    localStorage.authUser = JSON.stringify(authUser);
-    localStorage.token = rest.token
-
-    dispatch(setAuthUser(authUser));
+    dispatch(setAuthUser(userDB));
   };
 
   useEffect(() => {

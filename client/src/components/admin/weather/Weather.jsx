@@ -7,14 +7,8 @@ const Weather = () => {
   const { activeTheme } = useSelector((state) => state.admin);
 
   return (
-    <div className={`${activeTheme} admin-container`}>
-      <LeftSideNav />
-      <div className="right-side">
-        <TopBar />
-        <div className="widgets-container">
-          <WeatherInfo />
-        </div>
-      </div>
+    <div className="widgets-container">
+      <WeatherInfo />
     </div>
   );
 };
