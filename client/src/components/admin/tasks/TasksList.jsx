@@ -68,6 +68,8 @@ const TasksList = () => {
       button: "Ok",
       timer: "5000",
     });
+
+    setTaskInput("");
   };
 
   const removeTask = (id) => {

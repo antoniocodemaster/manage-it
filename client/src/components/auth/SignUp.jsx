@@ -75,6 +75,9 @@ const SignUp = () => {
       });
     }
 
+    localStorage.authUser = JSON.stringify(userDB);
+    localStorage.token = userDB.token
+
     dispatch(setAuthUser(userDB));
   };
 

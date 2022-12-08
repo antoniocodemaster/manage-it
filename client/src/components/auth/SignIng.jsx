@@ -68,7 +68,12 @@ const SignIn = () => {
       });
     }
 
-    dispatch(setAuthUser({ ...rest, id: uid }));
+    const authUser = { ...rest, id: uid };
+
+    localStorage.authUser = JSON.stringify(authUser);
+    localStorage.token = rest.token
+
+    dispatch(setAuthUser(authUser));
   };
 
   useEffect(() => {
