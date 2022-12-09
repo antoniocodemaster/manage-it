@@ -66,7 +66,7 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
    };
 
    const handleOpenScreenshotModal = () => {
-      if (!navigator.mediaDevices.getUserMedia) return;
+      if (!navigator.mediaDevices?.getUserMedia) return;
 
       setIsModalActive(false);
       setIsScreenshotModalActive(true);
@@ -125,6 +125,8 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
 
       if (userVideoRef.current) {
          const videoStream = userVideoRef.current.srcObject;
+
+         if(!videoStream) return;
 
          videoStream.getTracks().forEach((track) => track.stop());
       }

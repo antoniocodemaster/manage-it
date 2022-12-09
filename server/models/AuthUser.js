@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const AuthUserSchema = Schema({
-  username: {
+  emailAdd: {
     type: String,
+    unique: true,
     required: true,
-    unique: true
   },
 
   password: {
@@ -14,23 +14,21 @@ const AuthUserSchema = Schema({
 
   firstName: {
     type: String,
+    required: true,
   },
 
   lastName: {
-    type: String
-  }, 
-
-  emailAdd: {
-    type: String
-  }, 
+    type: String,
+    required: true,
+  },
 
   phoneNumber: {
-    type: String
+    type: String,
   },
 
   picture: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 AuthUserSchema.method("toJSON", function () {

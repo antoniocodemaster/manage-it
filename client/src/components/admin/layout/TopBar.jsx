@@ -10,6 +10,8 @@ import { changeTheme } from "../../../reducers/adminReducer";
 const TopBar = () => {
   const dispatch = useDispatch();
 
+  const { authUser } = useSelector((state) => state.auth);
+
   const { activeTheme } = useSelector((state) => state.admin);
 
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -52,7 +54,7 @@ const TopBar = () => {
       <img
         onClick={handleOpenDrodown}
         className="profile-picture"
-        src={profilePicture}
+        src={authUser.picture || profilePicture}
         alt=""
       />
     </div>

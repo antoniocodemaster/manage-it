@@ -16,11 +16,11 @@ export const registerUser = async (user) => {
   }
 };
 
-export const loginUser = async ({ username, password }) => {
+export const loginUser = async (user) => {
   const URL = `${REACT_APP_API_URL}/auth`;
 
   try {
-    const { data } = await axios.post(URL, { username, password });
+    const { data } = await axios.post(URL, user);
 
     return [data, null];
   } catch (error) {
@@ -47,3 +47,8 @@ export const renewToken = async (token) => {
     return [null, errMsg];
   }
 };
+
+
+
+
+

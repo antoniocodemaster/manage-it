@@ -9,7 +9,10 @@ import validateField from "../../utils/validateField";
 import InputWrapper from "../snippets/InputWrapper";
 
 const initialUser = {
-  username: null,
+  firstName: null,
+  lastName: null,
+  emailAdd: null,
+  phoneNumber: null,
   password: null,
   confirmPassword: null,
 };
@@ -25,7 +28,14 @@ const SignUp = () => {
     ...initialUser,
   });
 
-  const { username, password, confirmPassword } = user;
+  const {
+    firstName,
+    lastName,
+    emailAdd,
+    phoneNumber,
+    password,
+    confirmPassword,
+  } = user;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,13 +46,15 @@ const SignUp = () => {
       timer: "4000",
     };
 
+    const { phoneNumber, ...rest } = user;
+
     const areEmptyInputs = validateField({
-      condition: Object.values(user).some((value) => !value),
+      condition: Object.values(rest).some((value) => !value),
       msg: "Please, complete all required fields",
       ...alertConfig,
     });
 
-    Object.entries(user).forEach(([key, value]) =>
+    Object.entries(rest).forEach(([key, value]) =>
       setUserValidations((prev) => ({ ...prev, [key]: !!value }))
     );
 
@@ -54,7 +66,9 @@ const SignUp = () => {
       ...alertConfig,
     });
 
-    if (isInvalidPass) return;
+    if (isInvalidPass) {
+      return setUserValidations((prev) => ({ ...prev, password: false }));
+    }
 
     const isInvalidConfirmPass = validateField({
       condition: password !== confirmPassword,
@@ -64,7 +78,11 @@ const SignUp = () => {
 
     if (isInvalidConfirmPass) return;
 
-    const [userDB, err] = await registerUser(user);
+    const validUserProps = Object.entries(user)
+      .filter(([, value]) => value)
+      .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+
+    const [userDB, err] = await registerUser(validUserProps);
 
     if (err) {
       return swal({
@@ -76,7 +94,7 @@ const SignUp = () => {
     }
 
     localStorage.authUser = JSON.stringify(userDB);
-    localStorage.token = userDB.token
+    localStorage.token = userDB.token;
 
     dispatch(setAuthUser(userDB));
   };
@@ -111,16 +129,52 @@ const SignUp = () => {
 
   return (
     <div className="signin-container">
-      <form onSubmit={handleSubmit} className="signin-box">
-        <label htmlFor="user-name">Create User Name</label>
+      <form onSubmit={handleSubmit} className="signin-box signup-form">
+        <label htmlFor="first-name">First Name</label>
         <InputWrapper
-          activeClass={userValidations.username === false && "invalid"}
+          activeClass={userValidations.firstName === false && "invalid"}
         >
           <input
-            name="username"
-            value={username || ""}
+            name="firstName"
+            value={firstName || ""}
             onChange={handleInputChange}
-            id="user-name"
+            id="first-name"
+            type="text"
+          />
+        </InputWrapper>
+        <label htmlFor="last-name">Last Name</label>
+        <InputWrapper
+          activeClass={userValidations.lastName === false && "invalid"}
+        >
+          <input
+            name="lastName"
+            value={lastName || ""}
+            onChange={handleInputChange}
+            id="last-name"
+            type="text"
+          />
+        </InputWrapper>
+        <label htmlFor="email-add">Email Address</label>
+        <InputWrapper
+          activeClass={userValidations.emailAdd === false && "invalid"}
+        >
+          <input
+            name="emailAdd"
+            value={emailAdd || ""}
+            onChange={handleInputChange}
+            id="email-add"
+            type="text"
+          />
+        </InputWrapper>
+        <label htmlFor="phone-number">Phone number</label>
+        <InputWrapper
+          activeClass={userValidations.phoneNumber === false && "invalid"}
+        >
+          <input
+            name="phoneNumber"
+            value={phoneNumber || ""}
+            onChange={handleInputChange}
+            id="phone-number"
             type="text"
           />
         </InputWrapper>
@@ -136,7 +190,7 @@ const SignUp = () => {
             type="password"
           />
         </InputWrapper>
-        <label htmlFor="confirm-password">Create Password</label>
+        <label htmlFor="confirm-password">Confirm Password</label>
         <InputWrapper
           activeClass={userValidations.confirmPassword === false && "invalid"}
         >

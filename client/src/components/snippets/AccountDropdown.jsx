@@ -9,6 +9,7 @@ const AccountDropdown = ({ isDropdownActive }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.removeItem("token")
     dispatch(setAuthUser(null));
   };
 

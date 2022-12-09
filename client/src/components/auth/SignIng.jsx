@@ -9,7 +9,7 @@ import validateField from "../../utils/validateField";
 import InputWrapper from "../snippets/InputWrapper";
 
 const initialUser = {
-  username: null,
+  emailAdd: null,
   password: null,
 };
 
@@ -24,7 +24,7 @@ const SignIn = () => {
     ...initialUser,
   });
 
-  const { username, password } = user;
+  const { emailAdd, password } = user;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,18 +96,19 @@ const SignIn = () => {
     <div className="signin-container">
       <div className="signin-box">
         <form onSubmit={handleSubmit} action="">
+          <label htmlFor="email-add">Email Address</label>
           <InputWrapper
-            activeClass={userValidations.username === false && "invalid"}
+            activeClass={userValidations.emailAdd === false && "invalid"}
           >
             <input
-              name="username"
-              value={username || ""}
+              name="emailAdd"
+              value={emailAdd || ""}
               onChange={handleInputChange}
-              id="user-name"
+              id="email-add"
               type="text"
             />
           </InputWrapper>
-          <label htmlFor="password">Create Password</label>
+          <label htmlFor="password">Password</label>
           <InputWrapper
             activeClass={userValidations.password === false && "invalid"}
           >

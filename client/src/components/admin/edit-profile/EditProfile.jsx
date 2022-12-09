@@ -1,35 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import useForm from "../../../hooks/useForm";
 import validateField from "../../../utils/validateField";
 import ChangeAvatarModal from "../../snippets/ChangeAvatarModal";
 import InputWrapper from "../../snippets/InputWrapper";
-import LeftSideNav from "../layout/LeftSideNav";
-import TopBar from "../layout/TopBar";
 import profileImgSrc from "../../../images/antonio-profile-image.png";
+import { updateAuthUser, uploadUserPic } from "../../../utils/authUser-actions";
+import { setAuthUser } from "../../../reducers/authReducer";
 
 const initialAuthUser = {
-  username: "antonioAdmin",
-  firstName: "Antonio",
-  lastName: "Flores",
-  phoneNumber: "123456789",
-  address: "asdasd",
+  emailAdd: null,
+  firstName: null,
+  lastName: null,
+  phoneNumber: null,
 };
 
 const EditProfile = () => {
-  const { activeTheme } = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
 
-  const [user, handleInputChange, resetForm] = useForm(initialAuthUser);
+  const { authUser } = useSelector((state) => state.auth);
 
-  const { username, firstName, lastName, phoneNumber, address } = user;
+  const [user, handleInputChange, resetForm] = useForm(authUser || {});
+
+  const { emailAdd, firstName, lastName, phoneNumber } = user;
 
   const [userValidations, setUserValidations] = useState({
     ...initialAuthUser,
   });
   const [isModalActive, setIsModalActive] = useState(false);
   const [avatarImg, setAvatarImg] = useState(null);
-  const [avatarImgSrc, setAvatarImgSrc] = useState(profileImgSrc);
+  const [avatarImgSrc, setAvatarImgSrc] = useState(
+    authUser.picture || profileImgSrc
+  );
 
   const handleChangeAvatar = (avatarImg) => {
     setAvatarImg(avatarImg);
@@ -48,35 +51,53 @@ const EditProfile = () => {
   const handleUpdateUserInfo = async (e) => {
     e.preventDefault();
 
-    if (Object.values(user).every((value) => !value)) {
-      resetForm();
-    }
-
     const alertConfig = {
       iconType: "error",
       btnMsg: "Ok",
       timer: "4000",
     };
 
-    const userForm = {
-      username,
-      firstName,
-      lastName,
-      phoneNumber,
-      address,
-    };
+    const { phoneNumber, ...rest } = user;
 
     const areEmptyInputs = validateField({
-      condition: Object.values(userForm).some((value) => !value),
+      condition: Object.values(rest).some((value) => !value),
       msg: "Please, complete all required fields",
       ...alertConfig,
     });
 
-    Object.entries(user).forEach(([key, value]) =>
+    Object.entries(rest).forEach(([key, value]) =>
       setUserValidations((prev) => ({ ...prev, [key]: !!value }))
     );
 
     if (areEmptyInputs) return;
+
+    if (avatarImg) {
+      const [userPicUrl, err] = await uploadUserPic(avatarImg, authUser.id);
+
+      if (err) {
+        return swal({
+          title: err,
+          icon: "error",
+          button: "Ok",
+          timer: "5000",
+        });
+      }
+
+      dispatch(setAuthUser({ ...authUser, picture: userPicUrl }));
+    }
+
+    const [userDB, err] = await updateAuthUser(user, authUser.id);
+
+    if (err) {
+      return swal({
+        title: err,
+        icon: "error",
+        button: "Ok",
+        timer: "5000",
+      });
+    }
+
+    dispatch(setAuthUser(userDB));
 
     swal({
       title: "Profile updated successfully",
@@ -87,14 +108,12 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    const userForm = { username, firstName, lastName, phoneNumber, address };
-
-    Object.entries(userForm).forEach(([key, value]) => {
+    Object.entries(user).forEach(([key, value]) => {
       if (!value) return;
 
       setUserValidations((prev) => ({ ...prev, [key]: true }));
     });
-  }, [username, firstName, lastName, phoneNumber, address]);
+  }, [user]);
 
   return (
     <div className="widgets-container edit-page">
@@ -106,7 +125,9 @@ const EditProfile = () => {
       <div className="admin-box ag-3-4">
         <div className="user-info">
           <img src={avatarImgSrc} alt={firstName} />
-          <h2>{firstName}</h2>
+          <h2>
+            {authUser.firstName} {authUser.lastName}
+          </h2>
         </div>
         <div className="edit-profile-form">
           <form onSubmit={handleUpdateUserInfo}>
@@ -134,6 +155,18 @@ const EditProfile = () => {
                 type="text"
               />
             </InputWrapper>
+            <label htmlFor="email-add">Email Address</label>
+            <InputWrapper
+              activeClass={userValidations.emailAdd === false && "invalid"}
+            >
+              <input
+                name="emailAdd"
+                value={emailAdd || ""}
+                onChange={handleInputChange}
+                id="email-add"
+                type="text"
+              />
+            </InputWrapper>
             <label htmlFor="phone-number">Phone Number</label>
             <InputWrapper
               activeClass={userValidations.phoneNumber === false && "invalid"}
@@ -143,18 +176,6 @@ const EditProfile = () => {
                 value={phoneNumber || ""}
                 onChange={handleInputChange}
                 id="phone-number"
-                type="text"
-              />
-            </InputWrapper>
-            <label htmlFor="address">Address</label>
-            <InputWrapper
-              activeClass={userValidations.address === false && "invalid"}
-            >
-              <input
-                name="address"
-                value={address || ""}
-                onChange={handleInputChange}
-                id="address"
                 type="text"
               />
             </InputWrapper>
