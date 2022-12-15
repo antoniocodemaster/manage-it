@@ -1,7 +1,7 @@
 import {
-  faFileImage,
-  faImagePortrait,
-  faCamera,
+   faFileImage,
+   faImagePortrait,
+   faCamera,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
@@ -10,212 +10,210 @@ import isValidImg from "../../utils/isValidImg";
 import srcToFile from "../../utils/srcToFile";
 import Modal from "./Modal";
 
-const ChangeAvatarModal = ({
-  isModalActive,
-  setIsModalActive,
-  onChangeAvatar,
-}) => {
-  const [userImg, setUserImg] = useState(null);
-  const [imgSrc, setImgSrc] = useState("");
-  const [isAvatarImgLoading, setIsAvatarImgLoading] = useState(null);
-  const [isScreenshotModalActive, setIsScreenshotModalActive] = useState(false);
-  const [isWebcamPicActive, setIsWebcamPicActive] = useState(false);
+const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) => {
+   const [userImg, setUserImg] = useState(null);
+   const [imgSrc, setImgSrc] = useState("");
+   const [isAvatarImgLoading, setIsAvatarImgLoading] = useState(null);
+   const [isScreenshotModalActive, setIsScreenshotModalActive] = useState(false);
+   const [isWebcamPicActive, setIsWebcamPicActive] = useState(false);
 
-  const userVideoRef = useRef();
+   const userVideoRef = useRef();
 
-  const handleGetImg = () => {
-    document.getElementById("upload-img").click();
-  };
+   const handleGetImg = () => {
+      document.getElementById("upload-img").click();
+   };
 
-  const handleChangeImg = ({ target }) => {
-    setIsWebcamPicActive(false);
+   const handleChangeImg = ({ target }) => {
+      setIsWebcamPicActive(false);
 
-    const [image] = target.files;
+      const [image] = target.files;
 
-    if (!isValidImg(image)) {
-      target.value = "";
+      if (!isValidImg(image)) {
+         target.value = "";
 
-      return swal({
-        title: "Invalid image",
-        icon: "error",
-        button: "Ok",
-        timer: "50000",
+         return swal({
+            title: "Invalid image",
+            icon: "error",
+            button: "Ok",
+            timer: "50000",
+         });
+      }
+
+      const fileReader = new FileReader();
+
+      fileReader.readAsDataURL(image);
+
+      fileReader.addEventListener("loadend", ({ target }) => {
+         setImgSrc(target.result);
       });
-    }
 
-    const fileReader = new FileReader();
+      setUserImg(image);
+   };
 
-    fileReader.readAsDataURL(image);
+   const handleCloseModal = () => {
+      setIsModalActive(false);
+   };
 
-    fileReader.addEventListener("loadend", ({ target }) => {
-      setImgSrc(target.result);
-    });
+   const handleUploadImg = async () => {
+      setIsAvatarImgLoading(true);
 
-    setUserImg(image);
-  };
+      // dispatch(setAuthUser({ ...authUser, image: imgSrc }));
+      setUserImg(null);
+      setImgSrc("");
+      setIsModalActive(false);
+      setIsAvatarImgLoading(null);
+      onChangeAvatar(userImg);
+   };
 
-  const handleCloseModal = () => {
-    setIsModalActive(false);
-  };
+   const handleOpenScreenshotModal = () => {
+      if (!navigator.mediaDevices?.getUserMedia) return;
 
-  const handleUploadImg = async () => {
-    setIsAvatarImgLoading(true);
+      setIsModalActive(false);
+      setIsScreenshotModalActive(true);
+   };
 
-    // dispatch(setAuthUser({ ...authUser, image: imgSrc }));
-    setUserImg(null);
-    setImgSrc("");
-    setIsModalActive(false);
-    setIsAvatarImgLoading(null);
-    onChangeAvatar(userImg);
-  };
+   const handleTakeUserPic = async () => {
+      setIsWebcamPicActive(true);
 
-  const handleOpenScreenshotModal = () => {
-    if (!navigator.mediaDevices?.getUserMedia) return;
+      const canvas = document.createElement("canvas");
 
-    setIsModalActive(false);
-    setIsScreenshotModalActive(true);
-  };
+      if (!userVideoRef) return;
 
-  const handleTakeUserPic = async () => {
-    setIsWebcamPicActive(true);
+      canvas.width = 1920;
+      canvas.height = 1080;
 
-    const canvas = document.createElement("canvas");
+      const c = canvas.getContext("2d");
 
-    canvas.width = 1920;
-    canvas.height = 1080;
+      c.drawImage(userVideoRef.current, 0, 0, canvas.width, canvas.height);
 
-    const c = canvas.getContext("2d");
+      const imgSrc = canvas.toDataURL("image/png");
 
-    c.drawImage(userVideoRef.current, 0, 0, canvas.width, canvas.height);
+      setImgSrc(imgSrc);
 
-    const imgSrc = canvas.toDataURL("image/png");
+      const imgFile = await srcToFile(imgSrc);
 
-    setImgSrc(imgSrc);
+      setUserImg(imgFile);
 
-    const imgFile = await srcToFile(imgSrc);
+      setIsScreenshotModalActive(false);
+      setIsModalActive(true);
+   };
 
-    setUserImg(imgFile);
+   useEffect(() => {
+      if (!isScreenshotModalActive) return;
 
-    setIsScreenshotModalActive(false);
-    setIsModalActive(true);
-  };
+      if (!navigator.mediaDevices?.getUserMedia) return;
 
-  useEffect(() => {
-    if (!isScreenshotModalActive) return;
+      navigator.mediaDevices
+         .getUserMedia({ video: true })
+         .then((stream) => {
+            const video = userVideoRef.current;
 
-    if (!navigator.mediaDevices?.getUserMedia) return;
+            video.srcObject = stream;
 
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then((stream) => {
-        const video = userVideoRef.current;
+            video.play();
+         })
+         .catch((error) => {
+            swal({
+               title: error.message,
+               icon: "error",
+               button: "Ok",
+               timer: "4000",
+            });
+         });
+   }, [userVideoRef, isScreenshotModalActive]);
 
-        video.srcObject = stream;
+   useEffect(() => {
+      if (isScreenshotModalActive) return;
 
-        video.play();
-      })
-      .catch((error) => {
-        swal({
-          title: error.message,
-          icon: "error",
-          button: "Ok",
-          timer: "4000",
-        });
-      });
-  }, [userVideoRef, isScreenshotModalActive]);
+      if (userVideoRef.current) {
+         const videoStream = userVideoRef.current?.srcObject;
 
-  useEffect(() => {
-    if (isScreenshotModalActive) return;
+         if (!videoStream) return;
 
-    if (userVideoRef.current) {
-      const videoStream = userVideoRef.current?.srcObject;
+         videoStream.getTracks().forEach((track) => track.stop());
+      }
+   }, [isScreenshotModalActive, userVideoRef]);
 
-      if (!videoStream) return;
-
-      videoStream.getTracks().forEach((track) => track.stop());
-    }
-  }, [isScreenshotModalActive, userVideoRef]);
-
-  return (
-    <>
-      <Modal
-        onClose={() => setIsScreenshotModalActive(false)}
-        isModalActive={isScreenshotModalActive}
-      >
-        <div className="screenshot-container">
-          <video ref={userVideoRef} className="user-video"></video>
-          <button
-            onClick={handleTakeUserPic}
-            className="btn btn-primary take-screenshot-btn"
-          >
-            <FontAwesomeIcon
-              icon={faCamera}
-              data-tip="Change theme"
-              data-for="themes-tooltip"
-            />
-          </button>
-        </div>
-      </Modal>
-      <Modal onClose={handleCloseModal} isModalActive={isModalActive}>
-        <div className="change-img-modal-content">
-          <h2>Select image</h2>
-          <div className="avatar-img-options">
-            <div onClick={handleGetImg} className="options-item upload-img">
-              <input
-                onChange={handleChangeImg}
-                id="upload-img"
-                type="file"
-                className="d-none"
-              />
-              {imgSrc && !isWebcamPicActive && (
-                <div className="avatar-img-container">
-                  <img src={imgSrc} alt="User avatar" />
-                </div>
-              )}
-              {(!imgSrc || isWebcamPicActive) && (
-                <div className="upload-img-icon">
+   return (
+      <>
+         <Modal
+            onClose={() => setIsScreenshotModalActive(false)}
+            isModalActive={isScreenshotModalActive}
+         >
+            <div className="screenshot-container">
+               <video ref={userVideoRef} className="user-video"></video>
+               <button
+                  onClick={handleTakeUserPic}
+                  className="btn btn-primary take-screenshot-btn"
+               >
                   <FontAwesomeIcon
-                    icon={faFileImage}
-                    data-tip="Change theme"
-                    data-for="themes-tooltip"
+                     icon={faCamera}
+                     data-tip="Change theme"
+                     data-for="themes-tooltip"
                   />
-                </div>
-              )}
-              <p>Upload image</p>
+               </button>
             </div>
-            <div
-              onClick={handleOpenScreenshotModal}
-              className="options-item take-screen-shot"
-            >
-              {imgSrc && isWebcamPicActive && (
-                <div className="avatar-img-container">
-                  <img src={imgSrc} alt="User avatar" />
-                </div>
-              )}
-              {(!imgSrc || !isWebcamPicActive) && (
-                <div className="upload-img-icon">
-                  <FontAwesomeIcon
-                    icon={faImagePortrait}
-                    data-tip="Change theme"
-                    data-for="themes-tooltip"
-                  />
-                </div>
-              )}
-              <p>Take picture</p>
+         </Modal>
+         <Modal onClose={handleCloseModal} isModalActive={isModalActive}>
+            <div className="change-img-modal-content">
+               <h2>Select image</h2>
+               <div className="avatar-img-options">
+                  <div onClick={handleGetImg} className="options-item upload-img">
+                     <input
+                        onChange={handleChangeImg}
+                        id="upload-img"
+                        type="file"
+                        className="d-none"
+                     />
+                     {imgSrc && !isWebcamPicActive && (
+                        <div className="avatar-img-container">
+                           <img src={imgSrc} alt="User avatar" />
+                        </div>
+                     )}
+                     {(!imgSrc || isWebcamPicActive) && (
+                        <div className="upload-img-icon">
+                           <FontAwesomeIcon
+                              icon={faFileImage}
+                              data-tip="Change theme"
+                              data-for="themes-tooltip"
+                           />
+                        </div>
+                     )}
+                     <p>Upload image</p>
+                  </div>
+                  <div
+                     onClick={handleOpenScreenshotModal}
+                     className="options-item take-screen-shot"
+                  >
+                     {imgSrc && isWebcamPicActive && (
+                        <div className="avatar-img-container">
+                           <img src={imgSrc} alt="User avatar" />
+                        </div>
+                     )}
+                     {(!imgSrc || !isWebcamPicActive) && (
+                        <div className="upload-img-icon">
+                           <FontAwesomeIcon
+                              icon={faImagePortrait}
+                              data-tip="Change theme"
+                              data-for="themes-tooltip"
+                           />
+                        </div>
+                     )}
+                     <p>Take picture</p>
+                  </div>
+               </div>
+               {userImg && (
+                  <button
+                     onClick={handleUploadImg}
+                     className="btn btn-primary add-img-btn"
+                  >
+                     {isAvatarImgLoading ? "Loading..." : "Add"}
+                  </button>
+               )}
             </div>
-          </div>
-          {userImg && (
-            <button
-              onClick={handleUploadImg}
-              className="btn btn-primary add-img-btn"
-            >
-              {isAvatarImgLoading ? "Loading..." : "Add"}
-            </button>
-          )}
-        </div>
-      </Modal>
-    </>
-  );
+         </Modal>
+      </>
+   );
 };
 
 export default ChangeAvatarModal;
