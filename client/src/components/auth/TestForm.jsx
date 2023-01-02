@@ -24,9 +24,13 @@ const TestForm = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      const isInValidUser = Object.values(user).some((value) => !value);
+      const { firstName, email } = user;
 
-      Object.entries(user).forEach(([key, value]) => {
+      const requiredFields = { firstName, email };
+
+      const isInValidUser = Object.values(requiredFields).some((value) => !value);
+
+      Object.entries(requiredFields).forEach(([key, value]) => {
          setUserValidations((prev) => ({ ...prev, [key]: !prev[key] ? false : !!value }));
       });
 
@@ -50,37 +54,6 @@ const TestForm = () => {
          });
       }
 
-      if (user.password.length < 6) {
-         setUserValidations((prev) => ({ ...prev, password: false }));
-
-         return swal({
-            title: "Password should be more than 5 caracters",
-            icon: "error",
-            button: "Ok",
-            timer: "5000",
-         });
-      }
-
-      if (isNaN(user.zip)) {
-         setUserValidations((prev) => ({ ...prev, zip: false }));
-
-         return swal({
-            title: "Zip code should be a valid number",
-            icon: "error",
-            button: "Ok",
-            timer: "5000",
-         });
-      }
-
-      if (!inputCheck) {
-         return swal({
-            title: "Input check should be checked",
-            icon: "error",
-            button: "Ok",
-            timer: "5000",
-         });
-      }
-
       swal({
          title: "Data sended successfully",
          icon: "success",
@@ -90,9 +63,11 @@ const TestForm = () => {
    };
 
    useEffect(() => {
-      const { email, password, zip, ...rest } = user;
+      const { firstName, email } = user;
 
-      Object.entries(rest).forEach(([key, value]) => {
+      const requiredFields = { firstName, email };
+
+      Object.entries(requiredFields).forEach(([key, value]) => {
          value !== null && setUserValidations((prev) => ({ ...prev, [key]: !!value }));
       });
    }, [user]);
@@ -102,18 +77,6 @@ const TestForm = () => {
 
       setUserValidations((prev) => ({ ...prev, email: emailRegEx.test(user.email) }));
    }, [user.email]);
-
-   useEffect(() => {
-      if (user.password === null) return;
-
-      setUserValidations((prev) => ({ ...prev, password: user.password.length >= 6 }));
-   }, [user.password]);
-
-   useEffect(() => {
-      if (user.zip === null) return;
-
-      setUserValidations((prev) => ({ ...prev, zip: !isNaN(user.zip) }));
-   }, [user.zip]);
 
    return (
       <div className="test-form-page page-container">

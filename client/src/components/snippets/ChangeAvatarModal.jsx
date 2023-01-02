@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import swal from "sweetalert";
 import isValidImg from "../../utils/isValidImg";
 import srcToFile from "../../utils/srcToFile";
+import Loader from "../admin/layout/Loader";
 import Modal from "./Modal";
 
 const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) => {
@@ -16,6 +17,7 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
    const [isAvatarImgLoading, setIsAvatarImgLoading] = useState(null);
    const [isScreenshotModalActive, setIsScreenshotModalActive] = useState(false);
    const [isWebcamPicActive, setIsWebcamPicActive] = useState(false);
+   const [isUserVideoLoading, setIsUserVideoLoading] = useState(true);
 
    const userVideoRef = useRef();
 
@@ -111,6 +113,8 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
             video.srcObject = stream;
 
             video.play();
+
+            setIsUserVideoLoading(false);
          })
          .catch((error) => {
             swal({
@@ -134,14 +138,25 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
       }
    }, [isScreenshotModalActive, userVideoRef]);
 
+   useEffect(() => {
+      // console.log(userVideoRef.current?.height);
+   }, [isScreenshotModalActive, userVideoRef.current?.height]);
+
    return (
       <>
          <Modal
             onClose={() => setIsScreenshotModalActive(false)}
             isModalActive={isScreenshotModalActive}
          >
-            <div className="screenshot-container">
-               <video ref={userVideoRef} className="user-video"></video>
+            <div
+               style={{ minWidth: isScreenshotModalActive ? 230 : "" }}
+               className="screenshot-container"
+            >
+               {isUserVideoLoading && <Loader />}
+               <video
+                  ref={userVideoRef}
+                  className={`user-video${isUserVideoLoading ? " d-none" : ""}`}
+               ></video>
                <button
                   onClick={handleTakeUserPic}
                   className="btn btn-primary take-screenshot-btn"

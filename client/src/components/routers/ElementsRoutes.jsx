@@ -27,10 +27,10 @@ const ElementsRoutes = () => {
          {!isCheckingAuthUser && (
             <>
                <Route path="/" element={<SignIn />} />
-               <Route path="/test-form" element={<TestForm />} />
                <Route path="/sign-up" element={<SignUp />} />
                <Route path="/password-reset" element={<PasswordReset />} />
                <Route path="/admin" element={<Dashboard />}>
+                  <Route path="test-form" element={<TestForm />} />
                   <Route path="charts" element={<Charts />} />
                   <Route path="tasks" element={<Tasks />} />
                   <Route path="weather" element={<Weather />} />
