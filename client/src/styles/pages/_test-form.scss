@@ -1,0 +1,35 @@
+.test-form-page {
+   color: #35383b;
+   .signin-box {
+      width: auto;
+   }
+   label {
+      width: 100%;
+   }
+   .input-wrapper {
+      margin-top: 0.8rem;
+   }
+   input {
+      width: 100%;
+      &::placeholder {
+         font-weight: 700;
+      }
+   }
+   input[type="checkbox"] {
+      width: auto;
+      height: 1rem;
+      margin: auto;
+   }
+   .form-row {
+      display: flex;
+      gap: 2rem;
+   }
+   .checkbox-container {
+      display: inline-flex;
+      width: auto;
+      gap: 0.5rem;
+   }
+   .submit-btn-container {
+      margin-top: 1rem;
+   }
+}

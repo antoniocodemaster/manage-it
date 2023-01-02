@@ -73,11 +73,11 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
    };
 
    const handleTakeUserPic = async () => {
+      if (!userVideoRef.current.videoHeight) return;
+
       setIsWebcamPicActive(true);
 
       const canvas = document.createElement("canvas");
-
-      if (!userVideoRef) return;
 
       canvas.width = 1920;
       canvas.height = 1080;
