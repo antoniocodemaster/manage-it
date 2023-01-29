@@ -10,7 +10,6 @@ import Weather from "../admin/weather/Weather";
 import PasswordReset from "../auth/PasswordReset";
 import SignIn from "../auth/SignIng";
 import SignUp from "../auth/SignUp";
-import TestForm from "../auth/TestForm";
 import Dashboard from "./Dashboard";
 
 const ElementsRoutes = () => {
@@ -30,7 +29,6 @@ const ElementsRoutes = () => {
                <Route path="/sign-up" element={<SignUp />} />
                <Route path="/password-reset" element={<PasswordReset />} />
                <Route path="/admin" element={<Dashboard />}>
-                  <Route path="test-form" element={<TestForm />} />
                   <Route path="charts" element={<Charts />} />
                   <Route path="tasks" element={<Tasks />} />
                   <Route path="weather" element={<Weather />} />

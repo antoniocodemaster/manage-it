@@ -6,7 +6,7 @@ import useForm from "../../hooks/useForm";
 import { setAuthUser } from "../../reducers/authReducer";
 import { loginUser } from "../../utils/auth";
 import validateField from "../../utils/validateField";
-import InputWrapper from "../snippets/InputWrapper";
+import InputWrapper from "../molecules/InputWrapper";
 
 const initialUser = {
   emailAdd: null,

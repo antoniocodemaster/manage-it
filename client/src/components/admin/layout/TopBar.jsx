@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMoon } from "@fortawesome/free-solid-svg-icons";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
-import AccountDropdown from "../../snippets/AccountDropdown";
+import AccountDropdown from "../../molecules/AccountDropdown";
 import { changeTheme } from "../../../reducers/adminReducer";
 
 const TopBar = () => {

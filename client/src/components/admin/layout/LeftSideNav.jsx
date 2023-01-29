@@ -63,37 +63,6 @@ const LeftSideNav = () => {
                   />
                </NavLink>
             </li>
-            <li>
-               <NavLink
-                  activeclassname="active"
-                  to="/admin/test-form"
-                  data-for="grid-link-tooltip"
-                  data-tip="Test form"
-               >
-                  <FontAwesomeIcon icon={faFlaskVial} />
-                  <ReactTooltip
-                     id="grid-link-tooltip"
-                     type="light"
-                     effect="solid"
-                     place="right"
-                  />
-               </NavLink>
-            </li>
-            {/* <li>
-          <NavLink
-            activeclassname="active"
-            to="/"
-            data-for="logout-link-tooltip"
-            data-tip="Logout"
-          >
-            <FontAwesomeIcon icon={faPowerOff} />
-            <ReactTooltip
-              id="logout-link-tooltip"
-              type="light"
-              effect="solid"
-            />
-          </NavLink>
-        </li> */}
          </ul>
       </div>
    );
