@@ -5,8 +5,6 @@ import { changeTheme } from "../../reducers/adminReducer";
 import LeftSideNav from "../admin/layout/LeftSideNav";
 import TopBar from "../admin/layout/TopBar";
 
-//
-
 const Dashboard = () => {
    const dispatch = useDispatch();
 
