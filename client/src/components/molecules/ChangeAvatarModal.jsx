@@ -23,6 +23,7 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
 
    const handleGetImg = () => {
       document.getElementById("upload-img").click();
+      document.getElementById("upload-img").value = "";
    };
 
    const handleChangeImg = ({ target }) => {
