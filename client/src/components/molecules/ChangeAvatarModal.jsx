@@ -54,6 +54,10 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
 
    const handleCloseModal = () => {
       setIsModalActive(false);
+      // setUserImg(null);
+      // setImgSrc("");
+      // setIsModalActive(false);
+      // setIsAvatarImgLoading(null);
    };
 
    const handleUploadImg = async () => {
