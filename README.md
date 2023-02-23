@@ -34,13 +34,20 @@ This application stores some data like: user profiles, tasks, uploads, etc., Mon
 The JSON documents created in the React.js front end are sent to the Express.js server, where they are processed and (assuming they’re valid) stored directly in MongoDB for later retrieval. 
 
 # screenshots 
+
 Graphics
 ![My Image](screenshots/graphs.png)
+
 ---
+
 Mobile responsive grid
 ![My Image](screenshots/mobile-responsive-grid.png)
+
 ---
+
 Weather API Connection
 ![My Image](screenshots/connection-to-weather-api.png)
+
 ---
+
 # To view this Web Application in action, please vising the following link: (https://manage-it.antonioflores.me/).
