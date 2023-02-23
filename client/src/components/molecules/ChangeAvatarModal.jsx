@@ -23,6 +23,7 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
 
    const handleGetImg = () => {
       document.getElementById("upload-img").click();
+      document.getElementById("upload-img").value = "";
    };
 
    const handleChangeImg = ({ target }) => {
@@ -54,6 +55,10 @@ const ChangeAvatarModal = ({ isModalActive, setIsModalActive, onChangeAvatar }) 
 
    const handleCloseModal = () => {
       setIsModalActive(false);
+      // setUserImg(null);
+      // setImgSrc("");
+      // setIsModalActive(false);
+      // setIsAvatarImgLoading(null);
    };
 
    const handleUploadImg = async () => {
