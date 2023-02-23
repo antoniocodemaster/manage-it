@@ -36,11 +36,11 @@ The JSON documents created in the React.js front end are sent to the Express.js 
 # screenshots 
 Graphics
 ![My Image](screenshots/graphs.png)
-
+---
 Mobile responsive grid
 ![My Image](screenshots/mobile-responsive-grid.png)
-
+---
 Weather API Connection
 ![My Image](screenshots/connection-to-weather-api.png)
-
+---
 # To view this Web Application in action, please vising the following link: (https://manage-it.antonioflores.me/).
