@@ -6,15 +6,13 @@ const cors = require("cors");
 require("dotenv").config();
 const { join } = require("path");
 
-mongoose.set("strictQuery", false);
 
-const { PORT = 4003, HOST } = process.env;
+mongoose.set("strictQuery", false);
+dbConnection();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-dbConnection();
 
 const fileUploadConfig = {
    useTempFiles: true,
@@ -22,24 +20,30 @@ const fileUploadConfig = {
    createParentPath: true,
 };
 
-app.use(fileUpload(fileUploadConfig));
+const { PORT = 4003, HOST } = process.env;
 
-app.use(express.static(join(__dirname, "../client/build")));
+app.use(fileUpload(fileUploadConfig));
 
 app.get("/", (req, res) => {
    res.json("Server ready");
 });
 
-app.use("/api/tasks", require("./routes/tasks"));
+// app.use("/api/tasks", require("./routes/tasks"));
 
-app.use("/api/auth", require("./routes/auth"));
+// app.use("/api/auth", require("./routes/auth"));
 
-app.use("/api/uploads", require("./routes/uploads"));
+// app.use("/api/uploads", require("./routes/uploads"));
 
-app.get("*", (req, res) => {
-   res.sendFile(join(__dirname, "../client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//    res.sendFile(join(__dirname, "../client/build/index.html"));
+// });
 
 app.listen(PORT, HOST, () =>
    console.log(`server running at http://${HOST || "localhost"}:${PORT}`)
 );
+
+
+// Todos: 
+// - Connect To Database
+// - List User and tasks as rest api endpoints
+// - Migrate DB to my own mongo account
