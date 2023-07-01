@@ -1,32 +1,36 @@
+// Express configuration
 const express = require("express");
-const mongoose = require("mongoose");
-const dbConnection = require("./db/config");
-const fileUpload = require("express-fileupload");
+const app = express();
+app.use(express.json());
 const cors = require("cors");
+app.use(cors());
 require("dotenv").config();
 const { join } = require("path");
+const { PORT = 4003, HOST } = process.env;
 
-
+// Database connection configuration
+const mongoose = require("mongoose");
+const dbConnection = require("./db/config");
 mongoose.set("strictQuery", false);
 dbConnection();
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-
+// File Uploads
+const fileUpload = require("express-fileupload");
 const fileUploadConfig = {
    useTempFiles: true,
    tempFileDir: "/tmp/",
    createParentPath: true,
 };
-
-const { PORT = 4003, HOST } = process.env;
-
 app.use(fileUpload(fileUploadConfig));
 
+// Api Responses
 app.get("/", (req, res) => {
    res.json("Server ready");
 });
+
+app.get("/say-hi", (req, res) => {
+   res.json("hi, I am a rest api created using node and express!");
+})
 
 // app.use("/api/tasks", require("./routes/tasks"));
 
